@@ -8,3 +8,6 @@
 - Affiliate economics checked: Jobber listed on FlexOffers at 48% of monthly sales or flat amounts per annual plan; Housecall Pro $40–$400 per sale plus per-lead payouts (US/Canada only). Partner links on the pages are plain links until affiliate URLs arrive.
 - Weekly scheduled task "Weekly tool site run" created (Mondays 8:54am Pacific).
 - Open items for Krish: (a) apply to Jobber and Housecall Pro affiliate programs (PartnerStack) and send links; (b) add paruchurilabs.com to Google Search Console and submit the sitemap; (c) connect Ubersuggest or Semrush and Supermetrics.
+
+## 2026-10-16: affiliate applications
+- Krish applied to the Jobber and Housecall Pro affiliate programs (PartnerStack). Waiting on approval. Item (a) is now: once approved, send the referral links from the PartnerStack dashboard. Do not ask him to apply again.
