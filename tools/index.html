@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Field Quote Kit: Free Pricing Calculators for Service Businesses</title>
+<meta name="description" content="Free pricing calculators for pressure washing, window cleaning, lawn care and other service businesses. Set your rates, compare to typical US prices, and send a quote.">
+<link rel="canonical" href="https://paruchurilabs.com/tools/">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: work-order page — inputs on the left, a carbon-copy quote slip pinned on the right, how-it's-priced notes below */
+:root{
+  --bg:#E9EDEF; --panel:#FFFFFF; --ink:#14212B; --muted:#5A6873; --line:#CBD3D8;
+  --accent:#F2B705; --accent-ink:#14212B; --focus:#1F5FBF;
+  --slip:#FFF7CF; --slip-ink:#1E3A8A; --slip-line:#E7D98A;
+  --good:#2E7D4F;
+  --f-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0F161B; --panel:#172129; --ink:#E4EAEE; --muted:#93A1AB; --line:#2B3842;
+  --accent:#F2B705; --accent-ink:#14212B; --focus:#7FB0FF;
+  --slip:#2A2614; --slip-ink:#F3E39A; --slip-line:#4A4322; --good:#6CC596; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F161B; --panel:#172129; --ink:#E4EAEE; --muted:#93A1AB; --line:#2B3842;
+  --accent:#F2B705; --accent-ink:#14212B; --focus:#7FB0FF;
+  --slip:#2A2614; --slip-ink:#F3E39A; --slip-line:#4A4322; --good:#6CC596; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 24px;border-bottom:3px solid var(--ink);padding-bottom:14px}
+.brand .kit{display:block;text-decoration:none;color:var(--ink);font-family:var(--f-display);font-weight:700;font-size:clamp(30px,5vw,44px);line-height:.95;letter-spacing:.01em;text-transform:uppercase;margin:0;text-wrap:balance}
+.brand .kit span{background:var(--accent);color:var(--accent-ink);padding:0 .15em}
+.brand p{margin:8px 0 0;font-size:14px;color:var(--muted);max-width:60ch}
+.tools-nav{display:flex;flex-wrap:wrap;gap:6px}
+.tools-nav a{text-decoration:none;display:inline-block;font-family:var(--f-display);font-weight:600;font-size:18px;letter-spacing:.04em;text-transform:uppercase;border:2px solid var(--ink);background:transparent;color:var(--ink);padding:6px 14px;cursor:pointer;border-radius:2px}
+.tools-nav a[aria-current=page]{background:var(--ink);color:var(--bg)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+.tool-head{margin:26px 0 16px}
+.tool-head h1{font-family:var(--f-display);font-weight:700;font-size:32px;text-transform:uppercase;letter-spacing:.02em;margin:0;text-wrap:balance}
+.tool-head p{margin:4px 0 0;color:var(--muted);max-width:68ch}
+.grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:24px;align-items:start}
+@media (max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
+
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:20px}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:12px}
+fieldset+fieldset{margin-top:22px;padding-top:18px;border-top:1px dashed var(--line)}
+legend{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:0;margin-bottom:10px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) 110px 120px;gap:10px;align-items:center}
+.row.head{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.row label{font-weight:500}
+.row small{display:block;color:var(--muted);font-weight:400;font-size:12.5px}
+.field{display:grid;gap:4px}
+.field>label{font-weight:500}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+input[type=number],input[type=text],select{width:100%;font:inherit;font-family:var(--f-mono);font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:3px;background:var(--bg);color:var(--ink);font-variant-numeric:tabular-nums}
+.unit{position:relative}
+.unit input{padding-right:46px}
+.unit span{position:absolute;right:9px;top:50%;transform:translateY(-50%);font-family:var(--f-mono);font-size:11px;color:var(--muted);pointer-events:none}
+.check{display:flex;gap:10px;align-items:center}
+.check input{width:18px;height:18px;accent-color:var(--ink)}
+@media (max-width:520px){.row{grid-template-columns:minmax(0,1fr) 92px;}.row .rate{grid-column:1/-1}.row.head{display:none}}
+
+/* quote slip */
+.slip-col{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);display:grid;gap:14px}
+@media (max-width:860px){.slip-col{position:static}}
+.slip{background:var(--slip);color:var(--slip-ink);border-radius:2px;padding:20px 20px 16px;font-family:var(--f-mono);font-size:13.5px;box-shadow:0 1px 0 var(--slip-line),0 10px 24px -14px rgba(0,0,0,.35);background-image:repeating-linear-gradient(to bottom,transparent 0 27px,var(--slip-line) 27px 28px);background-position:0 92px}
+.slip .top{display:flex;justify-content:space-between;gap:10px;align-items:baseline;border-bottom:2px solid var(--slip-ink);padding-bottom:8px;margin-bottom:10px}
+.slip .top b{font-family:var(--f-display);font-size:22px;letter-spacing:.06em;text-transform:uppercase}
+.slip .no{font-size:12px}
+.slip .meta{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin-bottom:10px}
+.slip .meta input{background:transparent;border:0;border-bottom:1px dotted var(--slip-ink);border-radius:0;padding:2px 0;color:var(--slip-ink);font-size:13.5px}
+.lines{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.lines td{padding:5px 0;vertical-align:top;line-height:18px}
+.lines td:last-child{text-align:right;white-space:nowrap;padding-left:10px}
+.lines .sub td{opacity:.8;font-size:12.5px}
+.total{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--slip-ink);margin-top:8px;padding-top:8px}
+.total span{font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.total strong{font-family:var(--f-display);font-size:34px;letter-spacing:.02em}
+.fine{font-size:11.5px;margin:8px 0 0;opacity:.85}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.btn{font-family:var(--f-body);font-weight:600;font-size:14px;border:2px solid var(--ink);background:var(--ink);color:var(--bg);padding:9px 14px;border-radius:3px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+.toast{font-size:13px;color:var(--good);min-height:1.2em;margin:0}
+.band{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:14px 16px}
+.band h3{margin:0 0 4px;font-size:14px}
+.band p{margin:0;color:var(--muted);font-size:13.5px}
+.range{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px;text-align:center}
+.range div{border:1px solid var(--line);border-radius:3px;padding:8px 4px}
+.range small{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.range b{font-family:var(--f-mono);font-size:16px;font-variant-numeric:tabular-nums}
+.range .you{border-color:var(--ink);border-width:2px}
+.partner a{color:var(--ink);font-weight:600}
+
+/* notes */
+.notes{margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
+.notes h2{font-family:var(--f-display);font-size:22px;text-transform:uppercase;letter-spacing:.03em;margin:0 0 6px}
+.notes p,.notes li{color:var(--ink);max-width:65ch}
+.notes ul{padding-left:18px;margin:0}
+details{border-top:1px solid var(--line);padding:10px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:600}
+details p{margin:6px 0 0;color:var(--muted)}
+footer a{color:var(--muted)}
+footer{margin-top:40px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);padding-top:14px}
+@media (prefers-reduced-motion:no-preference){.total strong{transition:color .2s}}
+</style>
+<style>
+.hub{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:26px}
+.hub-card{display:grid;gap:6px;text-decoration:none;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--accent);border-radius:4px;padding:18px}
+.hub-card b{font-family:var(--f-display);font-size:24px;text-transform:uppercase;letter-spacing:.02em}
+.hub-card span{color:var(--muted)}
+.hub-card:hover b{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <a class="kit" href="/tools/">Field <span>Quote</span> Kit</a>
+      <p>Free pricing tools for service businesses, by <a href="/" style="color:inherit">Paruchuri Labs</a>.</p>
+    </div>
+  </header>
+  <section class="tool-head">
+    <h1>Free pricing calculators for service businesses</h1>
+    <p>Each calculator lets you set your own rates, shows how your price compares to typical US rates, and gives you a quote you can copy into a text or email.</p>
+  </section>
+  <div class="hub"><a class="hub-card" href="/tools/pressure-washing-estimate-calculator/"><b>Pressure Washing Estimate Calculator</b><span>Price driveways, siding, decks, fences and roofs by the square foot, compare to typical US rates, and copy a ready-to-send quote.</span></a><a class="hub-card" href="/tools/window-cleaning-price-calculator/"><b>Window Cleaning Price Calculator</b><span>Price per pane with upper-floor surcharges, screens and hard water treatment, compare to typical US rates, and copy a quote.</span></a><a class="hub-card" href="/tools/lawn-mowing-price-calculator/"><b>Lawn Mowing Price Calculator</b><span>Price by square footage, terrain and visit frequency, see the monthly price on a recurring plan, and copy a quote for your customer.</span></a></div>
+  <footer>Built by <a href="/">Paruchuri Labs</a>, web design for local businesses.</footer>
+</div>
+</body>
+</html>

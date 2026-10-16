@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESC}}">
+<link rel="canonical" href="{{URL}}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{DESC}}">
+<meta property="og:url" content="{{URL}}">
+<meta property="og:site_name" content="Paruchuri Labs">
+<script type="application/ld+json">{{JSONLD}}</script>
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: work-order page — inputs on the left, a carbon-copy quote slip pinned on the right, how-it's-priced notes below */
+:root{
+  --bg:#E9EDEF; --panel:#FFFFFF; --ink:#14212B; --muted:#5A6873; --line:#CBD3D8;
+  --accent:#F2B705; --accent-ink:#14212B; --focus:#1F5FBF;
+  --slip:#FFF7CF; --slip-ink:#1E3A8A; --slip-line:#E7D98A;
+  --good:#2E7D4F;
+  --f-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0F161B; --panel:#172129; --ink:#E4EAEE; --muted:#93A1AB; --line:#2B3842;
+  --accent:#F2B705; --accent-ink:#14212B; --focus:#7FB0FF;
+  --slip:#2A2614; --slip-ink:#F3E39A; --slip-line:#4A4322; --good:#6CC596; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F161B; --panel:#172129; --ink:#E4EAEE; --muted:#93A1AB; --line:#2B3842;
+  --accent:#F2B705; --accent-ink:#14212B; --focus:#7FB0FF;
+  --slip:#2A2614; --slip-ink:#F3E39A; --slip-line:#4A4322; --good:#6CC596; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 24px;border-bottom:3px solid var(--ink);padding-bottom:14px}
+.brand .kit{display:block;text-decoration:none;color:var(--ink);font-family:var(--f-display);font-weight:700;font-size:clamp(30px,5vw,44px);line-height:.95;letter-spacing:.01em;text-transform:uppercase;margin:0;text-wrap:balance}
+.brand .kit span{background:var(--accent);color:var(--accent-ink);padding:0 .15em}
+.brand p{margin:8px 0 0;font-size:14px;color:var(--muted);max-width:60ch}
+.tools-nav{display:flex;flex-wrap:wrap;gap:6px}
+.tools-nav a{text-decoration:none;display:inline-block;font-family:var(--f-display);font-weight:600;font-size:18px;letter-spacing:.04em;text-transform:uppercase;border:2px solid var(--ink);background:transparent;color:var(--ink);padding:6px 14px;cursor:pointer;border-radius:2px}
+.tools-nav a[aria-current=page]{background:var(--ink);color:var(--bg)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+.tool-head{margin:26px 0 16px}
+.tool-head h1{font-family:var(--f-display);font-weight:700;font-size:32px;text-transform:uppercase;letter-spacing:.02em;margin:0;text-wrap:balance}
+.tool-head p{margin:4px 0 0;color:var(--muted);max-width:68ch}
+.grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:24px;align-items:start}
+@media (max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
+
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:20px}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:12px}
+fieldset+fieldset{margin-top:22px;padding-top:18px;border-top:1px dashed var(--line)}
+legend{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:0;margin-bottom:10px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) 110px 120px;gap:10px;align-items:center}
+.row.head{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.row label{font-weight:500}
+.row small{display:block;color:var(--muted);font-weight:400;font-size:12.5px}
+.field{display:grid;gap:4px}
+.field>label{font-weight:500}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+input[type=number],input[type=text],select{width:100%;font:inherit;font-family:var(--f-mono);font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:3px;background:var(--bg);color:var(--ink);font-variant-numeric:tabular-nums}
+.unit{position:relative}
+.unit input{padding-right:46px}
+.unit span{position:absolute;right:9px;top:50%;transform:translateY(-50%);font-family:var(--f-mono);font-size:11px;color:var(--muted);pointer-events:none}
+.check{display:flex;gap:10px;align-items:center}
+.check input{width:18px;height:18px;accent-color:var(--ink)}
+@media (max-width:520px){.row{grid-template-columns:minmax(0,1fr) 92px;}.row .rate{grid-column:1/-1}.row.head{display:none}}
+
+/* quote slip */
+.slip-col{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);display:grid;gap:14px}
+@media (max-width:860px){.slip-col{position:static}}
+.slip{background:var(--slip);color:var(--slip-ink);border-radius:2px;padding:20px 20px 16px;font-family:var(--f-mono);font-size:13.5px;box-shadow:0 1px 0 var(--slip-line),0 10px 24px -14px rgba(0,0,0,.35);background-image:repeating-linear-gradient(to bottom,transparent 0 27px,var(--slip-line) 27px 28px);background-position:0 92px}
+.slip .top{display:flex;justify-content:space-between;gap:10px;align-items:baseline;border-bottom:2px solid var(--slip-ink);padding-bottom:8px;margin-bottom:10px}
+.slip .top b{font-family:var(--f-display);font-size:22px;letter-spacing:.06em;text-transform:uppercase}
+.slip .no{font-size:12px}
+.slip .meta{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin-bottom:10px}
+.slip .meta input{background:transparent;border:0;border-bottom:1px dotted var(--slip-ink);border-radius:0;padding:2px 0;color:var(--slip-ink);font-size:13.5px}
+.lines{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.lines td{padding:5px 0;vertical-align:top;line-height:18px}
+.lines td:last-child{text-align:right;white-space:nowrap;padding-left:10px}
+.lines .sub td{opacity:.8;font-size:12.5px}
+.total{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--slip-ink);margin-top:8px;padding-top:8px}
+.total span{font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.total strong{font-family:var(--f-display);font-size:34px;letter-spacing:.02em}
+.fine{font-size:11.5px;margin:8px 0 0;opacity:.85}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.btn{font-family:var(--f-body);font-weight:600;font-size:14px;border:2px solid var(--ink);background:var(--ink);color:var(--bg);padding:9px 14px;border-radius:3px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+.toast{font-size:13px;color:var(--good);min-height:1.2em;margin:0}
+.band{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:14px 16px}
+.band h3{margin:0 0 4px;font-size:14px}
+.band p{margin:0;color:var(--muted);font-size:13.5px}
+.range{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px;text-align:center}
+.range div{border:1px solid var(--line);border-radius:3px;padding:8px 4px}
+.range small{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.range b{font-family:var(--f-mono);font-size:16px;font-variant-numeric:tabular-nums}
+.range .you{border-color:var(--ink);border-width:2px}
+.partner a{color:var(--ink);font-weight:600}
+
+/* notes */
+.notes{margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
+.notes h2{font-family:var(--f-display);font-size:22px;text-transform:uppercase;letter-spacing:.03em;margin:0 0 6px}
+.notes p,.notes li{color:var(--ink);max-width:65ch}
+.notes ul{padding-left:18px;margin:0}
+details{border-top:1px solid var(--line);padding:10px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:600}
+details p{margin:6px 0 0;color:var(--muted)}
+footer a{color:var(--muted)}
+footer{margin-top:40px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);padding-top:14px}
+@media (prefers-reduced-motion:no-preference){.total strong{transition:color .2s}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <a class="kit" href="/tools/">Field <span>Quote</span> Kit</a>
+      <p>Free pricing tools for service businesses, by <a href="/" style="color:inherit">Paruchuri Labs</a>.</p>
+    </div>
+    <nav aria-label="Calculators" class="tools-nav">{{NAV}}</nav>
+  </header>
+
+  <section class="tool-head">
+    <h1 id="toolTitle">{{H1}}</h1>
+    <p id="toolLede">{{LEDE}}</p>
+  </section>
+
+  <div class="grid">
+    <form class="panel" id="form" autocomplete="off"></form>
+
+    <aside class="slip-col" aria-label="Quote">
+      <div class="slip" id="slip">
+        <div class="top"><b id="slipTitle">Estimate</b><span class="no" id="slipNo"></span></div>
+        <div class="meta">
+          <label for="bizName">From</label><input id="bizName" type="text" value="Brightline Exterior Co.">
+          <label for="custName">For</label><input id="custName" type="text" value="Sample customer">
+        </div>
+        <table class="lines"><tbody id="lines"></tbody></table>
+        <div class="total"><span>Estimate total</span><strong id="total">$0</strong></div>
+        <p class="fine" id="fineprint">Estimate valid for 30 days. Final price confirmed on site.</p>
+      </div>
+      <div class="actions">
+        <button class="btn" type="button" id="copyBtn">Copy quote text</button>
+        <button class="btn ghost" type="button" id="resetBtn">Reset to sample</button>
+      </div>
+      <p class="toast" id="toast" role="status"></p>
+      <div class="band">
+        <h3>How your price compares</h3>
+        <p id="rangeNote">Same job priced at typical low, mid and high US rates.</p>
+        <div class="range">
+          <div><small>Low</small><b id="rLow">–</b></div>
+          <div class="you"><small>Your quote</small><b id="rYou">–</b></div>
+          <div><small>High</small><b id="rHigh">–</b></div>
+        </div>
+      </div>
+      <div class="band partner">
+        <h3>Sending lots of quotes?</h3>
+        <p>Field service apps like <a href="https://getjobber.com" target="_blank" rel="noopener sponsored">Jobber</a> or <a href="https://www.housecallpro.com" target="_blank" rel="noopener sponsored">Housecall Pro</a> send branded quotes, book the job and collect payment in one place.</p>
+      </div>
+    </aside>
+  </div>
+
+  <section class="notes" id="notes">{{NOTES}}</section>
+
+  <footer>Price ranges are typical US residential figures compiled from public pricing guides and are a starting point, not a guarantee. Local rates vary, so adjust every rate to your market. Built by <a href="/">Paruchuri Labs</a>, web design for local businesses.</footer>
+</div>
+
+<script>
+const money = n => '$' + Math.round(n).toLocaleString('en-US');
+const money2 = n => '$' + n.toFixed(2);
+
+const TOOLS = {
+  pressure: {
+    tab: 'Pressure washing',
+    title: 'Pressure Washing Estimate Calculator',
+    lede: 'Price a job by surface and square footage. Enter each area, adjust the per-square-foot rates to match your market, and the estimate updates as you type.',
+    slip: 'Pressure washing estimate',
+    min: 175,
+    surfaces: [
+      {id:'drive', name:'Driveway / concrete', hint:'Flat concrete, pavers', sqft:600, rate:0.25, low:0.15, high:0.35},
+      {id:'siding', name:'House siding (soft wash)', hint:'Vinyl, stucco, brick', sqft:1800, rate:0.30, low:0.20, high:0.45},
+      {id:'deck', name:'Deck or patio', hint:'Wood or composite', sqft:0, rate:0.40, low:0.30, high:0.55},
+      {id:'fence', name:'Fence', hint:'Measure one side', sqft:0, rate:0.35, low:0.25, high:0.50},
+      {id:'roof', name:'Roof soft wash', hint:'Asphalt shingle', sqft:0, rate:0.45, low:0.30, high:0.65},
+    ],
+    condition: [['Light buildup',1],['Moderate (some mildew, stains)',1.15],['Heavy (oil, thick algae)',1.3]],
+    addons: [{id:'gutters', name:'Gutter face brightening', price:120},{id:'rust', name:'Rust / oil stain treatment', price:75}],
+    faq: [
+      ['How much should I charge per square foot for pressure washing?','Most residential jobs land between $0.15 and $0.35 per square foot for flat concrete and $0.20 to $0.45 for house soft washing. Delicate or high surfaces like roofs run higher because they take more care and time.'],
+      ['Should I have a minimum job charge?','Yes. Travel, setup and cleanup cost the same on a tiny job as a big one. Many operators set a minimum between $150 and $250 so small jobs stay worth the trip.'],
+      ['How do I measure a driveway quickly?','Multiply length by width in feet. A typical two-car driveway is about 16 by 38 feet, roughly 600 square feet.'],
+    ],
+    how: ['Each surface is priced as square feet times your rate.','The condition setting raises labor for heavier buildup.','Flat add-ons are added after that.','If the total falls under your minimum, the minimum applies.'],
+  },
+  windows: {
+    tab: 'Window cleaning',
+    title: 'Window Cleaning Price Calculator',
+    lede: 'Price residential window cleaning per pane. Count the panes, pick inside and out or exterior only, and add screens, upper floors and hard water treatment.',
+    slip: 'Window cleaning estimate',
+    min: 150,
+    paneRate:{rate:6, low:4, high:8},
+    floors:[{id:'p1', name:'Ground floor panes', count:20, extra:0},{id:'p2', name:'Second floor panes', count:12, extra:2},{id:'p3', name:'Third floor and up', count:0, extra:4}],
+    sides:[['Inside and outside',1],['Outside only',0.6],['Inside only',0.5]],
+    screens:{count:16, rate:2},
+    hardwater:{count:0, rate:3},
+    faq:[
+      ['How much do window cleaners charge per pane?','Typical residential rates run about $4 to $8 per pane for inside and outside. Exterior-only service is usually priced lower, and French or divided-light windows are often priced per pane rather than per window.'],
+      ['Do I charge more for second-story windows?','Most window cleaners add $2 to $4 per pane above the ground floor to cover ladder work and the extra time it takes.'],
+      ['What about hard water stains?','Mineral deposits need extra product and scrubbing, so many cleaners add a few dollars per affected pane or quote it separately after seeing the glass.'],
+    ],
+    how:['Each pane is priced at your base rate plus any upper-floor surcharge.','The side setting scales the pane price for exterior-only or interior-only work.','Screens and hard water treatment are priced per item.','If the total falls under your minimum, the minimum applies.'],
+  },
+  lawn: {
+    tab: 'Lawn mowing',
+    title: 'Lawn Mowing Price Calculator',
+    lede: 'Price mowing by lawn size, terrain and how often you visit. See the per-visit price and what the customer pays per month on a recurring plan.',
+    slip: 'Lawn care estimate',
+    min: 45,
+    sqft: 8000,
+    rate:{rate:4.5, low:3, high:6},
+    terrain:[['Flat, open lawn',1],['Some slopes or beds',1.15],['Steep or many obstacles',1.3]],
+    freq:[['Weekly',1,4.33],['Every two weeks',1.15,2.17],['One-time cut',1.5,1]],
+    addons:[{id:'edge', name:'Edging and trimming', price:15, on:true},{id:'bag', name:'Bag and haul clippings', price:20, on:false},{id:'blow', name:'Blow off walks and drive', price:0, on:true}],
+    faq:[
+      ['How much should I charge to mow a lawn?','Many lawn care pros charge $50 to $250 per visit depending on size, or about $0.01 to $0.06 per square foot. A quarter-acre lot often runs $25 to $60 per cut.'],
+      ['Should one-time cuts cost more than weekly service?','Yes. A one-time cut is usually overgrown, harder to schedule and does not repeat, so it is commonly priced 30 to 60 percent above a weekly visit.'],
+      ['How do I convert acres to square feet?','One acre is 43,560 square feet. A quarter acre is about 10,890 square feet, but the mowable lawn is often much smaller once you subtract the house, drive and beds.'],
+    ],
+    how:['Lawn area is priced per 1,000 square feet at your rate.','Terrain raises the price for slopes and obstacles.','Frequency adjusts the per-visit price, since one-time and every-other-week cuts take longer.','Add-ons are added per visit, then the minimum applies.'],
+  }
+};
+
+const state = {tool:'pressure'};
+const $ = id => document.getElementById(id);
+const quoteNo = 'Q-' + String(Date.now()).slice(-5);
+$('slipNo').textContent = 'No. ' + quoteNo;
+
+function num(id){ const v = parseFloat(($(id)||{}).value); return isFinite(v) && v > 0 ? v : 0; }
+
+function rateInput(id, val, unit){ return `<div class="unit rate"><input type="number" id="${id}" value="${val}" step="0.01" min="0" inputmode="decimal" aria-label="Rate"><span>${unit}</span></div>`; }
+function qtyInput(id, val, unit, label){ return `<div class="unit"><input type="number" id="${id}" value="${val}" step="1" min="0" inputmode="numeric" aria-label="${label}"><span>${unit}</span></div>`; }
+function select_(id, opts, label){ return `<div class="field"><label for="${id}">${label}</label><select id="${id}">${opts.map((o,i)=>`<option value="${i}">${o[0]}</option>`).join('')}</select></div>`; }
+function minField(t){ return `<div class="field"><label for="minimum">Minimum job charge</label><div class="unit"><input type="number" id="minimum" value="${t.min}" step="5" min="0"><span>USD</span></div></div>`; }
+
+function renderForm(){
+  const k = state.tool, t = TOOLS[k];
+  let h = '';
+  if(k==='pressure'){
+    h += `<fieldset><legend>Surfaces</legend><div class="row head"><span>Area</span><span>Size</span><span>Your rate</span></div>`;
+    t.surfaces.forEach(s => h += `<div class="row"><label for="q-${s.id}">${s.name}<small>${s.hint}</small></label>${qtyInput('q-'+s.id, s.sqft, 'sq ft', s.name+' square feet')}${rateInput('r-'+s.id, s.rate.toFixed(2), '/sq ft')}</div>`);
+    h += `</fieldset><fieldset><legend>Job details</legend><div class="two">${select_('cond', t.condition, 'Surface condition')}${minField(t)}</div>`;
+    t.addons.forEach(a => h += `<label class="check"><input type="checkbox" id="a-${a.id}"> ${a.name} <span style="color:var(--muted)">+${money(a.price)}</span></label>`);
+    h += `</fieldset>`;
+  } else if(k==='windows'){
+    h += `<fieldset><legend>Panes</legend><div class="row head"><span>Floor</span><span>Panes</span><span>Surcharge</span></div>`;
+    t.floors.forEach(f => h += `<div class="row"><label for="q-${f.id}">${f.name}</label>${qtyInput('q-'+f.id, f.count, 'panes', f.name)}${rateInput('x-'+f.id, f.extra.toFixed(2), '+/pane')}</div>`);
+    h += `</fieldset><fieldset><legend>Rates and extras</legend><div class="two">
+      <div class="field"><label for="paneRate">Base rate per pane</label>${rateInput('paneRate', t.paneRate.rate.toFixed(2), '/pane')}</div>
+      ${select_('sides', t.sides, 'Which sides')}
+      <div class="field"><label for="screens">Screens to clean</label>${qtyInput('screens', t.screens.count, 'qty','Screens')}</div>
+      <div class="field"><label for="screenRate">Price per screen</label>${rateInput('screenRate', t.screens.rate.toFixed(2), 'each')}</div>
+      <div class="field"><label for="hw">Panes with hard water stains</label>${qtyInput('hw', t.hardwater.count, 'panes','Hard water panes')}</div>
+      <div class="field"><label for="hwRate">Hard water surcharge</label>${rateInput('hwRate', t.hardwater.rate.toFixed(2), '/pane')}</div>
+      ${minField(t)}</div></fieldset>`;
+  } else {
+    h += `<fieldset><legend>Lawn</legend><div class="two">
+      <div class="field"><label for="sqft">Mowable lawn area</label>${qtyInput('sqft', t.sqft, 'sq ft','Lawn area')}</div>
+      <div class="field"><label for="lawnRate">Your rate per 1,000 sq ft</label>${rateInput('lawnRate', t.rate.rate.toFixed(2), '/1k')}</div>
+      ${select_('terrain', t.terrain, 'Terrain')}${select_('freq', t.freq, 'Visit frequency')}</div></fieldset>
+      <fieldset><legend>Each visit includes</legend>`;
+    t.addons.forEach(a => h += `<label class="check"><input type="checkbox" id="a-${a.id}" ${a.on?'checked':''}> ${a.name} <span style="color:var(--muted)">${a.price?'+'+money(a.price):'included'}</span></label>`);
+    h += `<div class="two">${minField(t)}</div></fieldset>`;
+  }
+  $('form').innerHTML = h;
+  $('form').oninput = $('form').onchange = calc;
+}
+
+function calcFor(k, rateMode){
+  // rateMode: 'you' uses the form's rates, 'low'/'high' use market benchmarks
+  const t = TOOLS[k], lines = []; let sub = 0;
+  if(k==='pressure'){
+    const m = t.condition[+$('cond').value][1];
+    t.surfaces.forEach(s => {
+      const q = num('q-'+s.id); if(!q) return;
+      const r = rateMode==='you' ? num('r-'+s.id) : s[rateMode];
+      const amt = q*r*m; sub += amt;
+      lines.push([s.name, `${q.toLocaleString()} sq ft × ${money2(r)}${m>1?' × '+m+' condition':''}`, amt]);
+    });
+    t.addons.forEach(a => { if($('a-'+a.id).checked){ sub += a.price; lines.push([a.name,'',a.price]); }});
+  } else if(k==='windows'){
+    const base = rateMode==='you' ? num('paneRate') : t.paneRate[rateMode];
+    const side = t.sides[+$('sides').value];
+    t.floors.forEach(f => {
+      const q = num('q-'+f.id); if(!q) return;
+      const per = (base + num('x-'+f.id)) * side[1]; const amt = q*per; sub += amt;
+      lines.push([f.name, `${q} panes × ${money2(per)} (${side[0].toLowerCase()})`, amt]);
+    });
+    const sc = num('screens'); if(sc){ const a = sc*num('screenRate'); sub+=a; lines.push(['Screen cleaning', `${sc} × ${money2(num('screenRate'))}`, a]); }
+    const hw = num('hw'); if(hw){ const a = hw*num('hwRate'); sub+=a; lines.push(['Hard water treatment', `${hw} panes × ${money2(num('hwRate'))}`, a]); }
+  } else {
+    const r = rateMode==='you' ? num('lawnRate') : t.rate[rateMode];
+    const ter = t.terrain[+$('terrain').value], fq = t.freq[+$('freq').value];
+    const sq = num('sqft');
+    const mow = sq/1000 * r * ter[1] * fq[1]; sub += mow;
+    lines.push(['Mowing', `${sq.toLocaleString()} sq ft at ${money2(r)}/1k${ter[1]>1?' × '+ter[1]+' terrain':''}${fq[1]>1?' × '+fq[1]+' '+fq[0].toLowerCase():''}`, mow]);
+    t.addons.forEach(a => { if($('a-'+a.id).checked){ sub += a.price; lines.push([a.name,'',a.price]); }});
+  }
+  const min = num('minimum');
+  let total = sub;
+  if(sub > 0 && sub < min){ lines.push(['Minimum job charge applied', `Job subtotal ${money(sub)}`, min - sub]); total = min; }
+  return {lines, total};
+}
+
+function calc(){
+  const k = state.tool, t = TOOLS[k];
+  const you = calcFor(k,'you'), low = calcFor(k,'low'), high = calcFor(k,'high');
+  $('lines').innerHTML = you.lines.length
+    ? you.lines.map(l => `<tr><td>${l[0]}${l[1]?`<br><span style="opacity:.75;font-size:12px">${l[1]}</span>`:''}</td><td>${money(l[2])}</td></tr>`).join('')
+    : `<tr><td>Add a size or count to start the estimate.</td><td></td></tr>`;
+  let totalText = money(you.total);
+  if(k==='lawn'){
+    const fq = t.freq[+$('freq').value];
+    $('fineprint').textContent = fq[2] > 1
+      ? `${money(you.total)} per visit, about ${money(you.total*fq[2])} per month on a ${fq[0].toLowerCase()} plan. Valid for 30 days.`
+      : 'One-time visit. Estimate valid for 30 days.';
+    $('rangeNote').textContent = 'Per-visit price at typical low, mid and high US rates.';
+  } else {
+    $('fineprint').textContent = 'Estimate valid for 30 days. Final price confirmed on site.';
+    $('rangeNote').textContent = 'Same job priced at typical low and high US rates.';
+  }
+  $('total').textContent = totalText;
+  $('rLow').textContent = money(low.total); $('rYou').textContent = money(you.total); $('rHigh').textContent = money(high.total);
+  state.last = you;
+}
+
+function select(k){
+  if(!TOOLS[k]) k = 'pressure';
+  state.tool = k;
+  const t = TOOLS[k];
+  $('slipTitle').textContent = t.slip;
+  renderForm(); calc();
+}
+
+function quoteText(){
+  const q = state.last, t = TOOLS[state.tool];
+  const rows = q.lines.map(l => `- ${l[0]}${l[1]?' ('+l[1]+')':''}: ${money(l[2])}`).join('\n');
+  return `${t.slip.toUpperCase()} ${quoteNo}\nFrom: ${$('bizName').value}\nFor: ${$('custName').value}\n\n${rows}\n\nTotal: ${money(q.total)}\n${$('fineprint').textContent}`;
+}
+
+$('copyBtn').onclick = () => {
+  const text = quoteText();
+  const done = msg => { $('toast').textContent = msg; setTimeout(()=>$('toast').textContent='', 3000); };
+  try{
+    navigator.clipboard.writeText(text).then(()=>done('Quote copied. Paste it into a text or email.'), ()=>fallback());
+  }catch(e){ fallback(); }
+  function fallback(){
+    const ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly',''); ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    let ok=false; try{ ok = document.execCommand('copy'); }catch(e){}
+    ta.remove(); done(ok ? 'Quote copied. Paste it into a text or email.' : 'Copy was blocked here. Select the quote and copy it manually.');
+  }
+};
+$('resetBtn').onclick = () => select(state.tool);
+['bizName','custName'].forEach(id => $(id).oninput = () => {});
+
+select('{{KEY}}');
+</script>
+</body>
+</html>

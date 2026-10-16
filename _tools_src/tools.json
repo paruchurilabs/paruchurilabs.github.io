@@ -1,0 +1,47 @@
+[
+  {
+    "key": "pressure",
+    "slug": "pressure-washing-estimate-calculator",
+    "nav": "Pressure washing",
+    "title": "Pressure Washing Estimate Calculator (Free) | Field Quote Kit",
+    "desc": "Free pressure washing estimate calculator. Price driveways, siding, decks, fences and roofs by the square foot, compare to typical US rates, and copy a ready-to-send quote.",
+    "h1": "Pressure Washing Estimate Calculator",
+    "lede": "Price a job by surface and square footage. Enter each area, adjust the per-square-foot rates to match your market, and the estimate updates as you type.",
+    "how": ["Each surface is priced as square feet times your rate.", "The condition setting raises labor for heavier buildup.", "Flat add-ons are added after that.", "If the total falls under your minimum, the minimum applies."],
+    "faq": [
+      ["How much should I charge per square foot for pressure washing?", "Most residential jobs land between $0.15 and $0.35 per square foot for flat concrete and $0.20 to $0.45 for house soft washing. Delicate or high surfaces like roofs run higher because they take more care and time."],
+      ["Should I have a minimum job charge?", "Yes. Travel, setup and cleanup cost the same on a tiny job as a big one. Many operators set a minimum between $150 and $250 so small jobs stay worth the trip."],
+      ["How do I measure a driveway quickly?", "Multiply length by width in feet. A typical two-car driveway is about 16 by 38 feet, roughly 600 square feet."]
+    ]
+  },
+  {
+    "key": "windows",
+    "slug": "window-cleaning-price-calculator",
+    "nav": "Window cleaning",
+    "title": "Window Cleaning Price Calculator per Pane (Free) | Field Quote Kit",
+    "desc": "Free window cleaning price calculator. Price per pane with upper-floor surcharges, screens and hard water treatment, compare to typical US rates, and copy a quote.",
+    "h1": "Window Cleaning Price Calculator",
+    "lede": "Price residential window cleaning per pane. Count the panes, pick inside and out or exterior only, and add screens, upper floors and hard water treatment.",
+    "how": ["Each pane is priced at your base rate plus any upper-floor surcharge.", "The side setting scales the pane price for exterior-only or interior-only work.", "Screens and hard water treatment are priced per item.", "If the total falls under your minimum, the minimum applies."],
+    "faq": [
+      ["How much do window cleaners charge per pane?", "Typical residential rates run about $4 to $8 per pane for inside and outside. Exterior-only service is usually priced lower, and French or divided-light windows are often priced per pane rather than per window."],
+      ["Do I charge more for second-story windows?", "Most window cleaners add $2 to $4 per pane above the ground floor to cover ladder work and the extra time it takes."],
+      ["What about hard water stains?", "Mineral deposits need extra product and scrubbing, so many cleaners add a few dollars per affected pane or quote it separately after seeing the glass."]
+    ]
+  },
+  {
+    "key": "lawn",
+    "slug": "lawn-mowing-price-calculator",
+    "nav": "Lawn mowing",
+    "title": "Lawn Mowing Price Calculator (Free) | Field Quote Kit",
+    "desc": "Free lawn mowing price calculator. Price by square footage, terrain and visit frequency, see the monthly price on a recurring plan, and copy a quote for your customer.",
+    "h1": "Lawn Mowing Price Calculator",
+    "lede": "Price mowing by lawn size, terrain and how often you visit. See the per-visit price and what the customer pays per month on a recurring plan.",
+    "how": ["Lawn area is priced per 1,000 square feet at your rate.", "Terrain raises the price for slopes and obstacles.", "Frequency adjusts the per-visit price, since one-time and every-other-week cuts take longer.", "Add-ons are added per visit, then the minimum applies."],
+    "faq": [
+      ["How much should I charge to mow a lawn?", "Many lawn care pros charge $50 to $250 per visit depending on size, or about $0.01 to $0.06 per square foot. A quarter-acre lot often runs $25 to $60 per cut."],
+      ["Should one-time cuts cost more than weekly service?", "Yes. A one-time cut is usually overgrown, harder to schedule and does not repeat, so it is commonly priced 30 to 60 percent above a weekly visit."],
+      ["How do I convert acres to square feet?", "One acre is 43,560 square feet. A quarter acre is about 10,890 square feet, but the mowable lawn is often much smaller once you subtract the house, drive and beds."]
+    ]
+  }
+]
