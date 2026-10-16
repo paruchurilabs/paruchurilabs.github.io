@@ -11,3 +11,6 @@
 
 ## 2026-10-16: affiliate applications
 - Krish applied to the Jobber and Housecall Pro affiliate programs (PartnerStack). Waiting on approval. Item (a) is now: once approved, send the referral links from the PartnerStack dashboard. Do not ask him to apply again.
+
+## 2026-10-16: Search Console
+- Krish verified paruchurilabs.com as a Domain property in Google Search Console (DNS on Cloudflare). Sitemap submission in progress. Item (b) is done once the sitemap shows as submitted; do not ask again. Gmail connected (hello@paruchurilabs.com forwards to his Gmail via Cloudflare Email Routing).
