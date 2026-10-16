@@ -15,3 +15,10 @@
 ## 2026-10-16: Search Console
 - Krish verified paruchurilabs.com as a Domain property in Google Search Console (DNS on Cloudflare). Sitemap submission in progress. Item (b) is done once the sitemap shows as submitted; do not ask again. Gmail connected (hello@paruchurilabs.com forwards to his Gmail via Cloudflare Email Routing).
 - Sitemap https://paruchurilabs.com/sitemap.xml submitted in Search Console (2026-10-16). Item (b) done.
+
+## 2026-10-16: Ubersuggest connected (free plan: 3 reports per day)
+US monthly search volume / SEO difficulty (0–100, lower is easier):
+- pressure washing estimate calculator: 480 / 11, CPC $5.03
+- window cleaning price calculator: 210 / 20, CPC $7.26
+- lawn mowing price calculator: 1,900 / 8, CPC $3.67 (seasonal: about 400 in Dec, peaks in spring)
+All three are low difficulty; lawn mowing has the most demand. Daily limit hit on the 4th lookup, so spend the 3 reports on the most promising candidates each run.
