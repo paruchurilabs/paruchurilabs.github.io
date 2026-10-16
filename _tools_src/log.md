@@ -14,3 +14,4 @@
 
 ## 2026-10-16: Search Console
 - Krish verified paruchurilabs.com as a Domain property in Google Search Console (DNS on Cloudflare). Sitemap submission in progress. Item (b) is done once the sitemap shows as submitted; do not ask again. Gmail connected (hello@paruchurilabs.com forwards to his Gmail via Cloudflare Email Routing).
+- Sitemap https://paruchurilabs.com/sitemap.xml submitted in Search Console (2026-10-16). Item (b) done.
