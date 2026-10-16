@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>Bếp Lan Noodle House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Be+Vietnam+Pro:wght@400;500;700&display=swap">
+<style>
+/* Layout: jade header band, menu as the centerpiece with category tabs and diet filter, family story beside a broth "timeline", hours + order band */
+:root{
+  --bg:#f7f9f6; --surface:#ffffff; --ink:#18302a; --muted:#5a6f69; --line:#d8e3de;
+  --jade:#0f5c4a; --jade-ink:#f2f8f5; --chili:#d1452c; --herb:#e2efe8;
+  --display:"Young Serif", Georgia, "Times New Roman", serif;
+  --body:"Be Vietnam Pro", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1a17; --surface:#142420; --ink:#e8f1ed; --muted:#a2b7b0; --line:#25403a;
+  --jade:#0b3f33; --jade-ink:#e8f1ed; --chili:#f06a4f; --herb:#163029; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1a17; --surface:#142420; --ink:#e8f1ed; --muted:#a2b7b0; --line:#25403a;
+  --jade:#0b3f33; --jade-ink:#e8f1ed; --chili:#f06a4f; --herb:#163029; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--jade)}
+.wrap{max-width:1100px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.1;margin:0;text-wrap:balance}
+h1{font-size:clamp(2.6rem,6.5vw,4.6rem)}
+h2{font-size:clamp(2rem,4vw,2.8rem)}
+h3{font-size:1.2rem}
+p{margin:0}
+.label{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--chili)}
+:focus-visible{outline:3px solid var(--chili);outline-offset:3px;border-radius:4px}
+
+.demo{background:var(--ink);color:var(--bg);font-size:.82rem;text-align:center}
+.demo .wrap{padding-block:6px}
+
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--jade);color:var(--jade-ink)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:12px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:1.45rem;color:var(--jade-ink);text-decoration:none}
+nav{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+nav a{color:var(--jade-ink);text-decoration:none;font-weight:500;font-size:.95rem}
+nav a:hover{text-decoration:underline}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 22px;border-radius:8px;font:700 .98rem var(--body);text-decoration:none;border:0;cursor:pointer}
+.btn-chili{background:var(--chili);color:#fff}
+.btn-chili:hover{filter:brightness(1.07)}
+.btn-soft{background:transparent;color:inherit;border:2px solid currentColor}
+@media (max-width:760px){nav .nl{display:none}}
+
+.hero{background:var(--jade);color:var(--jade-ink)}
+.hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:44px;align-items:center;padding-block:52px 64px}
+.hero-copy{display:flex;flex-direction:column;gap:20px;min-width:0}
+.hero .label{color:#ffb7a6}
+.hero .lede{font-size:1.1rem;opacity:.88;max-width:33em}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.bowl{max-width:100%;min-width:0}
+.bowl svg{width:100%;height:auto;display:block}
+.facts{display:flex;gap:10px 22px;flex-wrap:wrap;font-size:.92rem;font-weight:500}
+.facts span{display:flex;gap:8px;align-items:center}
+.facts span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--chili)}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.bowl{max-width:360px}}
+
+section.band{padding-block:72px}
+.head{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;max-width:40em}
+.head p{color:var(--muted)}
+
+/* menu */
+.controls{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:24px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tabs button{font:500 .95rem var(--body);padding:8px 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--jade);border-color:var(--jade);color:var(--jade-ink)}
+.veg{display:flex;align-items:center;gap:8px;font-weight:500;font-size:.95rem;cursor:pointer}
+.veg input{width:18px;height:18px;accent-color:var(--jade)}
+.dishes{display:grid;grid-template-columns:1fr 1fr;gap:0 48px}
+.dish{display:grid;grid-template-columns:1fr auto;gap:2px 16px;padding-block:16px;border-bottom:1px solid var(--line);min-width:0}
+.dish h3{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.dish h3 small{font-family:var(--body);font-size:.85rem;color:var(--muted);font-weight:400}
+.dish .p{font-weight:700;font-variant-numeric:tabular-nums;font-size:1.05rem}
+.dish p{grid-column:1/-1;color:var(--muted);font-size:.93rem}
+.tags{grid-column:1/-1;display:flex;gap:6px;margin-top:6px}
+.tag{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:4px;background:var(--herb);color:var(--ink)}
+.tag.hot{background:var(--chili);color:#fff}
+.empty{grid-column:1/-1;padding:24px 0;color:var(--muted)}
+@media (max-width:760px){.dishes{grid-template-columns:1fr}}
+
+/* story */
+.story{background:var(--herb)}
+.story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.story .wrap > div{min-width:0;display:flex;flex-direction:column;gap:16px}
+.story p{color:var(--muted)}
+.broth{list-style:none;margin:0;padding:0;border-left:2px solid var(--jade)}
+.broth li{position:relative;padding:0 0 18px 22px}
+.broth li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--jade)}
+.broth b{display:block;font-variant-numeric:tabular-nums}
+.broth span{color:var(--muted);font-size:.93rem}
+@media (max-width:820px){.story .wrap{grid-template-columns:1fr}}
+
+/* visit */
+.visit{display:grid;grid-template-columns:1fr 1fr 1fr;gap:36px}
+.visit > div{display:flex;flex-direction:column;gap:10px;min-width:0}
+.visit dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-variant-numeric:tabular-nums}
+.visit dt{font-weight:700}
+.visit dd{margin:0;color:var(--muted);text-align:right}
+.big{font-family:var(--display);font-size:1.6rem;line-height:1.2}
+.phone{font-weight:700;font-size:1.2rem;font-variant-numeric:tabular-nums;user-select:all}
+.muted{color:var(--muted)}
+@media (max-width:820px){.visit{grid-template-columns:1fr}}
+
+.order{background:var(--jade);color:var(--jade-ink)}
+.order .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-block:48px}
+.order p{opacity:.8;font-size:.9rem;margin-top:6px}
+
+footer{font-size:.88rem;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:24px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}.steam path{animation:rise 3.2s ease-in-out infinite}.steam path:nth-child(2){animation-delay:.6s}.steam path:nth-child(3){animation-delay:1.2s}@keyframes rise{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(-8px);opacity:.95}}}
+</style>
+
+<div class="demo"><div class="wrap">Sample website. Bếp Lan is a made-up restaurant used for a portfolio demo.</div></div>
+
+<header><div class="wrap">
+  <a class="logo" href="#top">Bếp Lan</a>
+  <nav>
+    <a class="nl" href="#menu">Menu</a>
+    <a class="nl" href="#story">Our story</a>
+    <a class="nl" href="#visit">Hours</a>
+    <a class="btn btn-chili" href="#order">Order pickup</a>
+  </nav>
+</div></header>
+
+<main id="top">
+  <section class="hero"><div class="wrap">
+    <div class="hero-copy">
+      <span class="label">Vietnamese noodle house · Family-run since 2011</span>
+      <h1>Broth simmered for twelve hours, every single day.</h1>
+      <p class="lede">Mrs. Lan's beef phở, crisp bánh mì and rice plates from the family's Huế and Saigon recipes. Eat in, or order ahead for pickup.</p>
+      <div class="ctas"><a class="btn btn-chili" href="#order">Order for pickup</a><a class="btn btn-soft" href="#menu">View the menu</a></div>
+      <div class="facts"><span>Dine-in &amp; takeout</span><span>Vegetarian broth daily</span><span>Free parking lot</span></div>
+    </div>
+    <div class="bowl" aria-hidden="true">
+      <svg viewBox="0 0 320 260">
+        <g class="steam" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" opacity=".7">
+          <path d="M120 70c-14-16 14-26 0-44"/><path d="M160 64c-14-16 14-26 0-44"/><path d="M200 70c-14-16 14-26 0-44"/>
+        </g>
+        <ellipse cx="160" cy="118" rx="140" ry="26" fill="#f2c27a"/>
+        <path d="M20 118h280c0 70-62 118-140 118S20 188 20 118z" fill="#f2f8f5"/>
+        <path d="M20 118h280c0 8-2 16-5 24H25c-3-8-5-16-5-24z" fill="#d1452c"/>
+        <ellipse cx="160" cy="118" rx="140" ry="26" fill="none" stroke="#f2f8f5" stroke-width="6"/>
+        <circle cx="110" cy="112" r="12" fill="#e9eedb"/><circle cx="110" cy="112" r="5" fill="#a9c47f"/>
+        <path d="M150 104l40 10-36 10z" fill="#8a4b3a"/>
+        <path d="M200 110c10-6 22-4 30 4" stroke="#4f9a5b" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M86 124c6-4 14-4 20 0" stroke="#4f9a5b" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <rect x="236" y="20" width="8" height="120" rx="4" transform="rotate(18 240 80)" fill="#c8a27a"/>
+        <rect x="252" y="22" width="8" height="120" rx="4" transform="rotate(24 256 82)" fill="#c8a27a"/>
+      </svg>
+    </div>
+  </div></section>
+
+  <section class="band" id="menu"><div class="wrap">
+    <div class="head"><span class="label">Menu</span><h2>What we're cooking</h2><p>All phở comes with a plate of Thai basil, bean sprouts, lime and jalapeño.</p></div>
+    <div class="controls">
+      <div class="tabs" role="group" aria-label="Menu category" id="tabs"></div>
+      <label class="veg" for="vegOnly"><input type="checkbox" id="vegOnly"> Vegetarian only</label>
+    </div>
+    <div class="dishes" id="dishes" aria-live="polite"></div>
+  </div></section>
+
+  <section class="band story" id="story"><div class="wrap">
+    <div>
+      <span class="label">Our story</span>
+      <h2>Three generations, one pot of broth</h2>
+      <p>Lan opened this kitchen in 2011 with her daughter Mai, cooking the phở she learned from her mother in Saigon. Today Mai's son Kevin runs the front of house, and Lan still tastes every pot before the doors open.</p>
+      <p>We make everything in-house: the broth, the pickled carrots and daikon, the lemongrass pork, and the chili oil people keep asking to buy by the jar.</p>
+    </div>
+    <div>
+      <span class="label">How the broth is made</span>
+      <ol class="broth">
+        <li><b>5:00am</b><span>Beef bones are blanched, rinsed and set to simmer.</span></li>
+        <li><b>6:30am</b><span>Charred onion and ginger go in, with star anise, cinnamon and clove.</span></li>
+        <li><b>11:00am</b><span>First bowls served. The pot keeps simmering all day.</span></li>
+        <li><b>5:00pm</b><span>Twelve hours in: the richest broth of the day for dinner.</span></li>
+      </ol>
+    </div>
+  </div></section>
+
+  <section class="band" id="visit"><div class="wrap visit">
+    <div><span class="label">Address</span><p class="big">88 Willow Avenue<br>Cedar Valley</p><p class="muted">Free lot behind the building.</p></div>
+    <div><span class="label">Hours</span>
+      <dl><dt>Mon</dt><dd>Closed</dd><dt>Tue–Thu</dt><dd>11am – 8:30pm</dd><dt>Fri–Sat</dt><dd>11am – 9:30pm</dd><dt>Sun</dt><dd>11am – 8pm</dd></dl>
+    </div>
+    <div><span class="label">Call ahead</span><p class="phone">(555) 016-4418</p><p class="muted">Parties of 8 or more, please call to reserve. Catering trays available with 48 hours' notice.</p></div>
+  </div></section>
+
+  <section class="order" id="order"><div class="wrap">
+    <div><h2>Hungry? Order ahead.</h2><p>On a live site, this links to the restaurant's online ordering (Toast, Square or DoorDash Storefront).</p></div>
+    <a class="btn btn-chili" href="#order">Start pickup order</a>
+  </div></section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Bếp Lan Noodle House (sample business)</span><span>88 Willow Avenue, Cedar Valley</span></div></footer>
+
+<script>
+(function(){
+  const M={
+    "Phở":[
+      ["Phở Tái","Rare steak phở","Thin-sliced eye of round cooked by the hot broth at your table.",15.5,[]],
+      ["Phở Đặc Biệt","House special","Rare steak, brisket, meatballs and tendon. Our most ordered bowl.",17.5,["Favorite"]],
+      ["Phở Gà","Chicken phở","Clear chicken broth, poached chicken and scallion oil.",15,[]],
+      ["Phở Chay","Vegetarian phở","Mushroom and daikon broth with tofu and bok choy.",14.5,["V"]]],
+    "Bún & rice":[
+      ["Bún Bò Huế","Spicy Huế beef noodles","Lemongrass-chili broth with round rice noodles. Lan's hometown dish.",17,["Spicy"]],
+      ["Bún Thịt Nướng","Grilled pork vermicelli","Lemongrass pork over cold noodles, herbs and fish sauce.",15.5,[]],
+      ["Cơm Tấm","Broken rice plate","Grilled pork chop, fried egg and pickles over broken rice.",16,[]],
+      ["Cơm Đậu Hũ","Lemongrass tofu rice","Crispy tofu with lemongrass and chili, jasmine rice.",14,["V","Spicy"]]],
+    "Bánh mì":[
+      ["Bánh Mì Thịt","Classic cold cut","Pâté, ham, pork roll, pickled carrot and daikon, cilantro.",9.5,[]],
+      ["Bánh Mì Gà Nướng","Grilled chicken","Lemongrass chicken with house mayo and jalapeño.",10,[]],
+      ["Bánh Mì Chay","Tofu","Five-spice tofu, cucumber and pickles.",9,["V"]]],
+    "Starters & drinks":[
+      ["Gỏi Cuốn","Fresh spring rolls (2)","Shrimp, pork, herbs and rice paper with peanut sauce.",8,[]],
+      ["Chả Giò","Fried egg rolls (4)","Crispy pork and taro rolls with lettuce wraps.",9,[]],
+      ["Cà Phê Sữa Đá","Iced coffee","Dark-roast drip coffee over sweetened condensed milk.",6,["V"]],
+      ["Trà Chanh","Lime iced tea","Jasmine tea with fresh lime.",4.5,["V"]]]
+  };
+  const cats=Object.keys(M); let cur=cats[0];
+  const tabs=document.getElementById("tabs"), box=document.getElementById("dishes"), veg=document.getElementById("vegOnly");
+  cats.forEach(c=>{const b=document.createElement("button");b.type="button";b.textContent=c;b.addEventListener("click",()=>{cur=c;render()});tabs.appendChild(b)});
+  function render(){
+    [...tabs.children].forEach(b=>b.setAttribute("aria-pressed",b.textContent===cur));
+    const list=M[cur].filter(d=>!veg.checked||d[4].includes("V"));
+    box.innerHTML=list.length?list.map(d=>`<div class="dish"><h3>${d[0]} <small>${d[1]}</small></h3><span class="p">$${d[3].toFixed(2)}</span><p>${d[2]}</p>${d[4].length?`<div class="tags">${d[4].map(t=>`<span class="tag${t==="Spicy"?" hot":""}">${t==="V"?"Vegetarian":t}</span>`).join("")}</div>`:""}</div>`).join(""):`<p class="empty">No vegetarian dishes in this section. Try Phở or Bánh mì.</p>`;
+  }
+  veg.addEventListener("change",render); render();
+})();
+</script>
+
+</body></html>

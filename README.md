@@ -1,2 +1,3 @@
-# paruchurilabs.github.io
-Paruchuri Labs website and client previews
+# Paruchuri Labs
+
+Website for Paruchuri Labs (paruchurilabs.com): portfolio, sample sites, and client previews under /preview/.

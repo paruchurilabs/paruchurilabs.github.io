@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+
+<meta name="robots" content="noindex"><title>Indian’s Barber Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Hind:wght@400;500;600;700&display=swap">
+<style>
+/* Barbershop: saffron and deep teal, tall condensed caps, price board with dotted leaders */
+:root{--bg:#f7f4ee;--surface:#fffdf8;--ink:#14282b;--muted:#5c6a6b;--line:#e2dccf;--accent:#e08a12;--accent-ink:#1b1203;--tint:#f3e9d6;--hero:#0f3a40;--hero-ink:#f7f4ee;--hero-line:rgba(247,244,238,.25);
+  --display:"Anton", Impact, "Arial Narrow", sans-serif; --body:"Hind","Segoe UI",system-ui,sans-serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0e1b1d;--surface:#132427;--ink:#ecebe5;--muted:#a5b3b2;--line:#25393b;--accent:#f2a33a;--accent-ink:#1b1203;--tint:#1a2f31;--hero:#0a2a2e;--hero-ink:#f3efe6;--hero-line:rgba(243,239,230,.2); color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1b1d;--surface:#132427;--ink:#ecebe5;--muted:#a5b3b2;--line:#25393b;--accent:#f2a33a;--accent-ink:#1b1203;--tint:#1a2f31;--hero:#0a2a2e;--hero-ink:#f3efe6;--hero-line:rgba(243,239,230,.2); color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.05;text-wrap:balance;text-transform:uppercase;letter-spacing:.01em;}
+h1{font-size:clamp(2.6rem,7vw,5.6rem);font-weight:400}
+h2{font-size:clamp(1.9rem,4.4vw,2.8rem);font-weight:400}
+h3{font-size:1.25rem;font-weight:400}
+p{margin:0}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.label{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.13em;color:var(--accent)}
+.preview{background:var(--ink);color:var(--bg);font-size:.84rem;text-align:center}
+.preview .wrap{padding-block:7px}
+header{background:var(--hero);color:var(--hero-ink)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:16px}
+.logo{font-family:var(--display);font-size:1.4rem;font-weight:400;text-transform:uppercase;letter-spacing:.01em;}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 22px;border-radius:4px;font:700 .98rem var(--body);text-decoration:none;border:0;cursor:pointer}
+.btn-a{background:var(--accent);color:var(--accent-ink)}
+.btn-o{border:2px solid currentColor;color:inherit;background:transparent}
+.hero{background:var(--hero);color:var(--hero-ink)}
+.hero .wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:end;padding-block:48px 64px}
+.hero-copy{display:flex;flex-direction:column;gap:20px;min-width:0}
+.hero h1 span{color:var(--accent)}
+.lede{font-size:1.12rem;opacity:.88;max-width:32em}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.card{border:1px solid var(--hero-line);border-radius:4px;padding:22px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.big{font-family:var(--display);font-size:2.6rem;font-weight:400;line-height:1}
+.card .ph{font-weight:700;font-size:1.25rem;font-variant-numeric:tabular-nums;user-select:all}
+.copy{align-self:flex-start;font:600 .85rem var(--body);border:1px solid var(--hero-line);background:transparent;color:inherit;border-radius:8px;padding:6px 10px;cursor:pointer}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-block:36px 48px}}
+section.band{padding-block:72px}
+.alt{background:var(--surface);border-block:1px solid var(--line)}
+.head{display:flex;flex-direction:column;gap:10px;margin-bottom:32px;max-width:40em}
+.head p{color:var(--muted)}
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:4px 52px}
+.item{display:flex;align-items:baseline;gap:10px;padding-block:12px;border-bottom:1px solid var(--line);min-width:0}
+.item b{font-weight:600}
+.item i{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-4px);min-width:16px}
+.item span{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:600}
+.ph-note{margin-top:18px;font-size:.88rem;color:var(--muted);background:var(--tint);border-radius:8px;padding:10px 14px}
+@media (max-width:760px){.menu{grid-template-columns:1fr}}
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.feats div{display:flex;flex-direction:column;gap:8px;min-width:0}
+.feats p{color:var(--muted)}
+.feats .ico{width:44px;height:44px;border-radius:4px;background:var(--tint);display:grid;place-items:center;color:var(--accent);font-weight:800;font-family:var(--display);font-size:1.2rem}
+@media (max-width:760px){.feats{grid-template-columns:1fr}}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.gallery div{aspect-ratio:1;max-width:100%;border-radius:4px;background:var(--tint);border:2px dashed var(--line);display:grid;place-items:center;color:var(--muted);font-size:.85rem;text-align:center;padding:10px}
+@media (max-width:560px){.gallery{grid-template-columns:1fr 1fr}}
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.visit > div{min-width:0;display:flex;flex-direction:column;gap:12px}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+td{padding:10px 2px;border-bottom:1px solid var(--line)}
+td:last-child{text-align:right;font-weight:600}
+tr.today td{color:var(--accent);font-weight:700}
+.addr{font-family:var(--display);font-size:1.7rem;line-height:1.15;font-weight:400}
+.muted{color:var(--muted)}
+.maplink{font-weight:600;color:var(--accent)}
+@media (max-width:760px){.visit{grid-template-columns:1fr}}
+.cta{background:var(--hero);color:var(--hero-ink)}
+.cta .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-block:52px}
+footer{font-size:.86rem;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:22px}
+
+</style>
+<div class="preview"><div class="wrap">Preview made for Indian’s Barber by Paruchuri Labs (Krish Paruchuri) · krishparuchuri99@gmail.com</div></div>
+<header><div class="wrap"><span class="logo">Indian’s Barber</span><a class="btn btn-a" href="#visit">Visit today</a></div></header>
+<main>
+<section class="hero"><div class="wrap">
+  <div class="hero-copy">
+    <span class="label">Barbershop · Milpitas</span>
+    <h1>Fresh cuts on <span>Main Street.</span></h1>
+    <p class="lede">Classic and modern haircuts, fades, beard trims and line-ups from friendly, experienced barbers. Open seven days a week. Walk in or call ahead.</p>
+    <div class="ctas"><a class="btn btn-a" href="#visit">Hours & directions</a><a class="btn btn-o" href="#menu">See services</a></div>
+  </div>
+  <aside class="card" aria-label="Rating and phone">
+    <span class="label">Rated on Google</span>
+    <span class="big">4.8 ★</span>
+    <span>from 649 reviews</span>
+    <span class="label" style="margin-top:6px">Call</span>
+    <span class="ph" id="ph">(909) 910-9797</span>
+    <button class="copy" id="copyp" type="button">Copy number</button>
+  </aside>
+</div></section>
+<section class="band" id="menu"><div class="wrap">
+  <div class="head"><span class="label">Services</span><h2>Services & prices</h2><p>Every cut done with care and attention to detail.</p></div>
+  <div class="menu"><div class="item"><b>Men's haircut</b><i></i><span>$__</span></div><div class="item"><b>Skin fade</b><i></i><span>$__</span></div><div class="item"><b>Scissor cut</b><i></i><span>$__</span></div><div class="item"><b>Kids' haircut</b><i></i><span>$__</span></div><div class="item"><b>Beard trim & line-up</b><i></i><span>$__</span></div><div class="item"><b>Haircut + beard</b><i></i><span>$__</span></div><div class="item"><b>Hot towel shave</b><i></i><span>$__</span></div><div class="item"><b>Senior haircut</b><i></i><span>$__</span></div></div>
+  <p class="ph-note">Prices shown as $__ are placeholders. We'll fill in your real services and prices together.</p>
+</div></section>
+<section class="band alt"><div class="wrap">
+  <div class="head"><span class="label">Why customers come back</span><h2>Precision, every visit</h2></div>
+  <div class="feats"><div><span class="ico">✂</span><h3>Detail-focused cuts</h3><p>Clean lines and sharp angles, done right the first time.</p></div><div><span class="ico">★</span><h3>649 Google reviews</h3><p>Rated 4.8 stars by customers in Milpitas and nearby.</p></div><div><span class="ico">7</span><h3>Open 7 days</h3><p>Open late most evenings, so you can come after work.</p></div></div>
+</div></section>
+<section class="band"><div class="wrap">
+  <div class="head"><span class="label">Photos</span><h2>Inside the shop</h2><p>Your own photos go here. Phone photos work great.</p></div>
+  <div class="gallery"><div>Shop front photo</div><div>Barber at work</div><div>Fresh fade close-up</div><div>Beard line-up</div><div>Waiting area</div><div>Team photo</div></div>
+</div></section>
+<section class="band alt" id="visit"><div class="wrap visit">
+  <div><span class="label">Hours</span><h2>When we're open</h2><table aria-label="Weekly hours"><tbody id="hrs"></tbody></table></div>
+  <div><span class="label">Visit</span><p class="addr">82 N Main St, Suite 110<br>Milpitas, CA 95035</p>
+  <p class="ph" style="font-weight:700;font-size:1.2rem;user-select:all">(909) 910-9797</p>
+  <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Indian%27s+Barber+82+N+Main+St+Milpitas+CA" target="_blank" rel="noopener">Get directions on Google Maps</a>
+  <p class="muted">Walk-ins welcome. Call ahead to check the wait.</p></div>
+</div></section>
+<section class="cta"><div class="wrap"><h2>Ready for a fresh cut?</h2><a class="btn btn-a" href="#visit">Hours & directions</a></div></section>
+</main>
+<footer><div class="wrap"><span>Indian’s Barber · 82 N Main St, Suite 110, Milpitas, CA 95035</span><span>(909) 910-9797</span></div></footer>
+
+<script>
+(function(){const H={"1": "9am \u2013 8pm", "2": "10:30am \u2013 5pm", "3": "9am \u2013 8pm", "4": "9am \u2013 8pm", "5": "9am \u2013 8pm", "6": "9am \u2013 8pm", "0": "9am \u2013 8pm"};const D=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const tb=document.getElementById("hrs"),d=new Date().getDay();
+[1,2,3,4,5,6,0].forEach(i=>{const tr=document.createElement("tr");if(i===d)tr.className="today";tr.innerHTML="<td>"+D[i]+"</td><td>"+H[i]+"</td>";tb.appendChild(tr)});
+const c=document.getElementById("copyp");if(c)c.onclick=async()=>{const t=document.getElementById("ph");try{await navigator.clipboard.writeText(t.textContent);c.textContent="Copied"}catch{const r=document.createRange();r.selectNodeContents(t);getSelection().removeAllRanges();getSelection().addRange(r);c.textContent="Selected"}};
+})();
+</script>
+</body></html>

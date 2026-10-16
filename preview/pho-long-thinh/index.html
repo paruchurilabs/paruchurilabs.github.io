@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+
+<meta name="robots" content="noindex"><title>Phở Long Thịnh Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Be+Vietnam+Pro:wght@400;500;700&display=swap">
+<style>
+/* Pho restaurant: warm broth amber on deep red-brown, heavy serif, menu board front and center */
+:root{--bg:#fbf7f0;--surface:#fffdf9;--ink:#2b1a14;--muted:#6f5b50;--line:#eadfce;--accent:#c4421f;--accent-ink:#ffffff;--tint:#f5e8d4;--hero:#4a1d14;--hero-ink:#fbf2e6;--hero-line:rgba(251,242,230,.25);
+  --display:"Playfair Display", Georgia, serif; --body:"Be Vietnam Pro","Segoe UI",system-ui,sans-serif;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#170f0c;--surface:#21160f;--ink:#f4e9dc;--muted:#bba692;--line:#3a2a20;--accent:#f0794f;--accent-ink:#2a0d04;--tint:#2c1e15;--hero:#2d120c;--hero-ink:#f8ecdd;--hero-line:rgba(248,236,221,.22); color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#170f0c;--surface:#21160f;--ink:#f4e9dc;--muted:#bba692;--line:#3a2a20;--accent:#f0794f;--accent-ink:#2a0d04;--tint:#2c1e15;--hero:#2d120c;--hero-ink:#f8ecdd;--hero-line:rgba(248,236,221,.22); color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.05;text-wrap:balance;}
+h1{font-size:clamp(2.6rem,7vw,5rem);font-weight:900}
+h2{font-size:clamp(1.9rem,4.4vw,2.8rem);font-weight:900}
+h3{font-size:1.25rem;font-weight:900}
+p{margin:0}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.label{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.13em;color:var(--accent)}
+.preview{background:var(--ink);color:var(--bg);font-size:.84rem;text-align:center}
+.preview .wrap{padding-block:7px}
+header{background:var(--hero);color:var(--hero-ink)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:16px}
+.logo{font-family:var(--display);font-size:1.4rem;font-weight:900;}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 22px;border-radius:10px;font:700 .98rem var(--body);text-decoration:none;border:0;cursor:pointer}
+.btn-a{background:var(--accent);color:var(--accent-ink)}
+.btn-o{border:2px solid currentColor;color:inherit;background:transparent}
+.hero{background:var(--hero);color:var(--hero-ink)}
+.hero .wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:end;padding-block:48px 64px}
+.hero-copy{display:flex;flex-direction:column;gap:20px;min-width:0}
+.hero h1 span{color:var(--accent)}
+.lede{font-size:1.12rem;opacity:.88;max-width:32em}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.card{border:1px solid var(--hero-line);border-radius:10px;padding:22px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.big{font-family:var(--display);font-size:2.6rem;font-weight:900;line-height:1}
+.card .ph{font-weight:700;font-size:1.25rem;font-variant-numeric:tabular-nums;user-select:all}
+.copy{align-self:flex-start;font:600 .85rem var(--body);border:1px solid var(--hero-line);background:transparent;color:inherit;border-radius:8px;padding:6px 10px;cursor:pointer}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-block:36px 48px}}
+section.band{padding-block:72px}
+.alt{background:var(--surface);border-block:1px solid var(--line)}
+.head{display:flex;flex-direction:column;gap:10px;margin-bottom:32px;max-width:40em}
+.head p{color:var(--muted)}
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:4px 52px}
+.item{display:flex;align-items:baseline;gap:10px;padding-block:12px;border-bottom:1px solid var(--line);min-width:0}
+.item b{font-weight:600}
+.item i{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-4px);min-width:16px}
+.item span{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:600}
+.ph-note{margin-top:18px;font-size:.88rem;color:var(--muted);background:var(--tint);border-radius:8px;padding:10px 14px}
+@media (max-width:760px){.menu{grid-template-columns:1fr}}
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.feats div{display:flex;flex-direction:column;gap:8px;min-width:0}
+.feats p{color:var(--muted)}
+.feats .ico{width:44px;height:44px;border-radius:10px;background:var(--tint);display:grid;place-items:center;color:var(--accent);font-weight:800;font-family:var(--display);font-size:1.2rem}
+@media (max-width:760px){.feats{grid-template-columns:1fr}}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.gallery div{aspect-ratio:1;max-width:100%;border-radius:10px;background:var(--tint);border:2px dashed var(--line);display:grid;place-items:center;color:var(--muted);font-size:.85rem;text-align:center;padding:10px}
+@media (max-width:560px){.gallery{grid-template-columns:1fr 1fr}}
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.visit > div{min-width:0;display:flex;flex-direction:column;gap:12px}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+td{padding:10px 2px;border-bottom:1px solid var(--line)}
+td:last-child{text-align:right;font-weight:600}
+tr.today td{color:var(--accent);font-weight:700}
+.addr{font-family:var(--display);font-size:1.7rem;line-height:1.15;font-weight:900}
+.muted{color:var(--muted)}
+.maplink{font-weight:600;color:var(--accent)}
+@media (max-width:760px){.visit{grid-template-columns:1fr}}
+.cta{background:var(--hero);color:var(--hero-ink)}
+.cta .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-block:52px}
+footer{font-size:.86rem;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:22px}
+
+</style>
+<div class="preview"><div class="wrap">Preview made for Phở Long Thịnh by Paruchuri Labs (Krish Paruchuri) · krishparuchuri99@gmail.com</div></div>
+<header><div class="wrap"><span class="logo">Phở Long Thịnh</span><a class="btn btn-a" href="#visit">Hours & location</a></div></header>
+<main>
+<section class="hero"><div class="wrap">
+  <div class="hero-copy">
+    <span class="label">Vietnamese noodle house · West San Jose</span>
+    <h1>Big bowls, <span>rich broth.</span></h1>
+    <p class="lede">A family-run phở spot on Saratoga Avenue, loved for generous portions, flavorful broth and friendly service. Vegetarian options available.</p>
+    <div class="ctas"><a class="btn btn-a" href="#visit">Hours & directions</a><a class="btn btn-o" href="#menu">See the menu</a></div>
+  </div>
+  <aside class="card" aria-label="Rating and phone">
+    <span class="label">Rated on Google</span>
+    <span class="big">4.5 ★</span>
+    <span>from 505 reviews</span>
+    <span class="label" style="margin-top:6px">Call</span>
+    <span class="ph" id="ph">(408) 243-7113</span>
+    <button class="copy" id="copyp" type="button">Copy number</button>
+  </aside>
+</div></section>
+<section class="band" id="menu"><div class="wrap">
+  <div class="head"><span class="label">Menu</span><h2>Our menu</h2><p>Small and large bowls. Ask about vegetarian options.</p></div>
+  <div class="menu"><div class="item"><b>#1 Phở special combination</b><i></i><span>$__</span></div><div class="item"><b>#2 Phở with rare steak</b><i></i><span>$__</span></div><div class="item"><b>Phở with brisket</b><i></i><span>$__</span></div><div class="item"><b>Chicken phở</b><i></i><span>$__</span></div><div class="item"><b>Vegetarian phở</b><i></i><span>$__</span></div><div class="item"><b>Bún bò Huế</b><i></i><span>$__</span></div><div class="item"><b>Vegetable spring rolls</b><i></i><span>$__</span></div><div class="item"><b>Egg rolls</b><i></i><span>$__</span></div><div class="item"><b>Vietnamese iced coffee</b><i></i><span>$__</span></div><div class="item"><b>Fresh lemonade</b><i></i><span>$__</span></div></div>
+  <p class="ph-note">Prices shown as $__ are placeholders. We'll fill in your real menu items and prices together.</p>
+</div></section>
+<section class="band alt"><div class="wrap">
+  <div class="head"><span class="label">Why customers come back</span><h2>Why the line forms on Friday nights</h2></div>
+  <div class="feats"><div><span class="ico">♨</span><h3>Broth worth the wait</h3><p>Simmered for hours and full of flavor.</p></div><div><span class="ico">★</span><h3>505 Google reviews</h3><p>Rated 4.5 stars by diners in San Jose.</p></div><div><span class="ico">V</span><h3>Vegetarian friendly</h3><p>Meat-free phở and spring rolls on the menu.</p></div></div>
+</div></section>
+<section class="band"><div class="wrap">
+  <div class="head"><span class="label">Photos</span><h2>From our kitchen</h2><p>Your own photos go here. Phone photos work great.</p></div>
+  <div class="gallery"><div>Signature phở bowl</div><div>Spring rolls</div><div>Dining room</div><div>Fresh herbs plate</div><div>Bún bò Huế</div><div>Iced coffee</div></div>
+</div></section>
+<section class="band alt" id="visit"><div class="wrap visit">
+  <div><span class="label">Hours</span><h2>When we're open</h2><table aria-label="Weekly hours"><tbody id="hrs"></tbody></table></div>
+  <div><span class="label">Visit</span><p class="addr">1080 Saratoga Ave<br>San Jose, CA 95129</p>
+  <p class="ph" style="font-weight:700;font-size:1.2rem;user-select:all">(408) 243-7113</p>
+  <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Pho+Long+Thinh+1080+Saratoga+Ave+San+Jose+CA" target="_blank" rel="noopener">Get directions on Google Maps</a>
+  <p class="muted">Closed Thursdays and Sundays. Busy on Friday evenings, so come early.</p></div>
+</div></section>
+<section class="cta"><div class="wrap"><h2>Hungry? Come by today.</h2><a class="btn btn-a" href="#visit">Hours & directions</a></div></section>
+</main>
+<footer><div class="wrap"><span>Phở Long Thịnh · 1080 Saratoga Ave, San Jose, CA 95129</span><span>(408) 243-7113</span></div></footer>
+
+<script>
+(function(){const H={"1": "10am \u2013 7:30pm", "2": "10am \u2013 7:30pm", "3": "10am \u2013 7:30pm", "4": "Closed", "5": "10am \u2013 7:30pm", "6": "10am \u2013 7:30pm", "0": "Closed"};const D=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const tb=document.getElementById("hrs"),d=new Date().getDay();
+[1,2,3,4,5,6,0].forEach(i=>{const tr=document.createElement("tr");if(i===d)tr.className="today";tr.innerHTML="<td>"+D[i]+"</td><td>"+H[i]+"</td>";tb.appendChild(tr)});
+const c=document.getElementById("copyp");if(c)c.onclick=async()=>{const t=document.getElementById("ph");try{await navigator.clipboard.writeText(t.textContent);c.textContent="Copied"}catch{const r=document.createRange();r.selectNodeContents(t);getSelection().removeAllRanges();getSelection().addRange(r);c.textContent="Selected"}};
+})();
+</script>
+</body></html>

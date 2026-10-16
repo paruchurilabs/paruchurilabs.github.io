@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>Fifth Chair Barbershop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: tall condensed type, a price "menu board" with dotted leaders, barber chairs as cards, hours table that highlights today */
+:root{
+  --bg:#f1f3f6; --surface:#ffffff; --ink:#151d33; --muted:#56607a; --line:#d5dae4;
+  --red:#c1121f; --red-ink:#ffffff; --navy:#1d2a4a; --band:#151d33; --band-ink:#eef1f7;
+  --display:"Big Shoulders Display", "Oswald", Impact, "Arial Narrow", sans-serif;
+  --body:"Work Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1526; --surface:#172038; --ink:#eaedf5; --muted:#a3abc2; --line:#2a3553;
+  --red:#e5383b; --red-ink:#ffffff; --navy:#9fb3e6; --band:#080c18; --band-ink:#eaedf5; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1526; --surface:#172038; --ink:#eaedf5; --muted:#a3abc2; --line:#2a3553;
+  --red:#e5383b; --red-ink:#ffffff; --navy:#9fb3e6; --band:#080c18; --band-ink:#eaedf5; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--band)}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-transform:uppercase;line-height:.95;margin:0;text-wrap:balance;letter-spacing:.01em}
+h1{font-size:clamp(3.2rem,9vw,6.4rem);font-weight:900}
+h2{font-size:clamp(2.3rem,5vw,3.4rem);font-weight:900}
+h3{font-size:1.6rem;font-weight:700}
+p{margin:0}
+.label{font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--red)}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+
+.demo{background:var(--red);color:var(--red-ink);font-size:.82rem;text-align:center}
+.demo .wrap{padding-block:6px}
+
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--band);color:var(--band-ink)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:900;font-size:1.6rem;text-transform:uppercase;letter-spacing:.04em;color:var(--band-ink);text-decoration:none}
+.pole{width:14px;height:34px;border-radius:7px;border:2px solid var(--band-ink);background:repeating-linear-gradient(135deg,#c1121f 0 6px,#fff 6px 12px,#2b4c9b 12px 18px,#fff 18px 24px);background-size:100% 34px}
+@media (prefers-reduced-motion:no-preference){.pole{animation:spin 2.4s linear infinite}@keyframes spin{to{background-position:0 34px}}}
+nav{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+nav a{color:var(--band-ink);text-decoration:none;font-weight:500;font-size:.95rem}
+nav a:hover{text-decoration:underline}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 24px;font:600 .95rem var(--body);text-transform:uppercase;letter-spacing:.08em;text-decoration:none;border:0;cursor:pointer;border-radius:4px}
+.btn-red{background:var(--red);color:var(--red-ink)}
+.btn-red:hover{filter:brightness(1.08)}
+.btn-line{border:2px solid currentColor;color:inherit;background:transparent}
+@media (max-width:760px){nav .nl{display:none}}
+
+/* hero */
+.hero{background:var(--band);color:var(--band-ink)}
+.hero .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:end;padding-block:56px 64px}
+.hero-copy{display:flex;flex-direction:column;gap:22px;min-width:0}
+.hero h1 span{color:var(--red)}
+.hero .lede{font-size:1.12rem;opacity:.85;max-width:32em}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.now{border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:22px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.now .status{display:flex;align-items:center;gap:10px;font-weight:600}
+.dot{width:10px;height:10px;border-radius:50%;background:#3ccf6e;box-shadow:0 0 0 4px rgba(60,207,110,.25)}
+.dot.closed{background:#9aa3b8;box-shadow:none}
+.now dl{margin:0;display:grid;grid-template-columns:1fr auto;gap:8px 16px;font-size:.95rem}
+.now dt{opacity:.75}
+.now dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-block:40px 48px}}
+
+section.band{padding-block:76px}
+.head{display:flex;flex-direction:column;gap:10px;margin-bottom:36px;max-width:40em}
+.head p{color:var(--muted)}
+
+/* menu board */
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:12px 56px}
+.menu h3{grid-column:1/-1;margin-top:18px;padding-bottom:8px;border-bottom:3px solid var(--ink)}
+.menu h3:first-child{margin-top:0}
+.item{display:flex;flex-direction:column;gap:2px;padding-block:10px;min-width:0}
+.row{display:flex;align-items:baseline;gap:10px}
+.row b{font-weight:600;font-size:1.05rem}
+.row i{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-4px);min-width:20px}
+.row span{font-family:var(--display);font-weight:700;font-size:1.5rem;font-variant-numeric:tabular-nums}
+.item small{color:var(--muted);font-size:.9rem}
+@media (max-width:760px){.menu{grid-template-columns:1fr}}
+
+/* barbers */
+.tint{background:var(--surface);border-block:1px solid var(--line)}
+.chairs{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.chair{display:flex;flex-direction:column;gap:12px;min-width:0}
+.ph{aspect-ratio:4/5;max-width:100%;border-radius:4px;background:var(--navy);display:grid;place-items:center;position:relative;overflow:hidden}
+.ph b{font-family:var(--display);font-size:4rem;font-weight:900;color:var(--bg);opacity:.9}
+.ph em{position:absolute;top:10px;left:10px;font-style:normal;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--red);color:var(--red-ink);padding:3px 8px;border-radius:3px}
+.chair p{color:var(--muted);font-size:.93rem}
+.chair .spec{font-size:.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink)}
+@media (max-width:900px){.chairs{grid-template-columns:repeat(2,1fr)}}
+
+/* visit */
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.visit > div{min-width:0}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+td{padding:11px 4px;border-bottom:1px solid var(--line)}
+td:last-child{text-align:right;font-weight:600}
+tr.today td{color:var(--red);font-weight:600}
+tr.today td:first-child::after{content:"  · Today";font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
+.addr{font-family:var(--display);font-size:2rem;font-weight:700;text-transform:uppercase;line-height:1.05}
+.contact{display:flex;flex-direction:column;gap:18px}
+.phone{font-size:1.4rem;font-weight:600;font-variant-numeric:tabular-nums;user-select:all}
+.policy{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;color:var(--muted);font-size:.95rem}
+.policy li{padding-left:18px;position:relative}
+.policy li::before{content:"";position:absolute;left:0;top:.6em;width:8px;height:8px;background:var(--red)}
+@media (max-width:820px){.visit{grid-template-columns:1fr}}
+
+/* CTA band */
+.cta{background:var(--band);color:var(--band-ink)}
+.cta .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-block:56px}
+.note{font-size:.88rem;opacity:.75;margin-top:8px}
+
+footer{font-size:.88rem;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:26px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<div class="demo"><div class="wrap">Sample website. Fifth Chair is a made-up barbershop used for a portfolio demo.</div></div>
+
+<header><div class="wrap">
+  <a class="logo" href="#top"><span class="pole" aria-hidden="true"></span>Fifth Chair</a>
+  <nav>
+    <a class="nl" href="#menu">Prices</a>
+    <a class="nl" href="#barbers">Barbers</a>
+    <a class="nl" href="#visit">Hours &amp; location</a>
+    <a class="btn btn-red" href="#book">Book now</a>
+  </nav>
+</div></header>
+
+<main id="top">
+  <section class="hero"><div class="wrap">
+    <div class="hero-copy">
+      <span class="label">Barbershop · Est. 2014 · Cedar Valley</span>
+      <h1>Sharp cuts.<br>No <span>guesswork.</span></h1>
+      <p class="lede">Classic cuts, skin fades and hot-towel shaves from four barbers who listen first. Book your chair online, or walk in and we'll fit you in.</p>
+      <div class="ctas"><a class="btn btn-red" href="#book">Book a chair</a><a class="btn btn-line" href="#menu">See prices</a></div>
+    </div>
+    <aside class="now" aria-label="Shop status">
+      <div class="status"><span class="dot" id="dot"></span><span id="openText">Open now · until 7pm</span></div>
+      <dl>
+        <dt>Walk-in wait (typical)</dt><dd>15–25 min</dd>
+        <dt>Next online opening</dt><dd id="next">Today, 4:30pm</dd>
+        <dt>Phone</dt><dd>(555) 018-7734</dd>
+      </dl>
+    </aside>
+  </div></section>
+
+  <section class="band" id="menu"><div class="wrap">
+    <div class="head"><span class="label">Price list</span><h2>The menu</h2><p>Every cut includes a hot-towel neck finish and styling. Prices before tip.</p></div>
+    <div class="menu">
+      <h3>Cuts</h3>
+      <div class="item"><div class="row"><b>Classic cut</b><i></i><span>$32</span></div><small>Scissor or clipper, 30 min</small></div>
+      <div class="item"><div class="row"><b>Skin fade</b><i></i><span>$38</span></div><small>Bald or zero fade, 40 min</small></div>
+      <div class="item"><div class="row"><b>Buzz cut</b><i></i><span>$22</span></div><small>One guard all over, 15 min</small></div>
+      <div class="item"><div class="row"><b>Kids' cut (12 &amp; under)</b><i></i><span>$24</span></div><small>25 min</small></div>
+      <h3>Beard &amp; shave</h3>
+      <div class="item"><div class="row"><b>Beard trim &amp; line-up</b><i></i><span>$20</span></div><small>Razor edges, 20 min</small></div>
+      <div class="item"><div class="row"><b>Hot-towel straight razor shave</b><i></i><span>$40</span></div><small>Pre-shave oil, two towels, 40 min</small></div>
+      <h3>Combos</h3>
+      <div class="item"><div class="row"><b>Cut + beard</b><i></i><span>$50</span></div><small>Saves $8, 50 min</small></div>
+      <div class="item"><div class="row"><b>The full chair</b><i></i><span>$72</span></div><small>Cut, shave and face towel, 75 min</small></div>
+    </div>
+  </div></section>
+
+  <section class="band tint" id="barbers"><div class="wrap">
+    <div class="head"><span class="label">The barbers</span><h2>Pick your chair</h2><p>Book with the same barber every time so you never have to explain your cut twice.</p></div>
+    <div class="chairs">
+      <div class="chair"><div class="ph"><em>Chair 1</em><b>DM</b></div><h3>Dre M.</h3><span class="spec">Fades · designs</span><p>Owner. Cutting since 2009, known for crisp tapers.</p></div>
+      <div class="chair"><div class="ph"><em>Chair 2</em><b>LK</b></div><h3>Luis K.</h3><span class="spec">Shaves · beards</span><p>The straight-razor specialist. Books up fast on Fridays.</p></div>
+      <div class="chair"><div class="ph"><em>Chair 3</em><b>SA</b></div><h3>Sam A.</h3><span class="spec">Scissor cuts · curls</span><p>Longer styles, textured and curly hair.</p></div>
+      <div class="chair"><div class="ph"><em>Chair 4</em><b>TJ</b></div><h3>Tasha J.</h3><span class="spec">Kids · classics</span><p>Patient with first haircuts and nervous kids.</p></div>
+    </div>
+  </div></section>
+
+  <section class="band" id="visit"><div class="wrap visit">
+    <div>
+      <div class="head" style="margin-bottom:20px"><span class="label">Hours</span><h2>When we're open</h2></div>
+      <table aria-label="Weekly hours"><tbody id="hours"></tbody></table>
+    </div>
+    <div class="contact">
+      <div class="head" style="margin-bottom:0"><span class="label">Find us</span><h2>Visit the shop</h2></div>
+      <p class="addr">214 Main Street<br>Cedar Valley</p>
+      <p class="phone">(555) 018-7734</p>
+      <ul class="policy">
+        <li>Walk-ins welcome until 30 minutes before close</li>
+        <li>Free street parking after 6pm and all day Sunday</li>
+        <li>Please give 2 hours' notice to cancel a booking</li>
+        <li>Card, cash, Apple Pay and Google Pay accepted</li>
+      </ul>
+    </div>
+  </div></section>
+
+  <section class="cta" id="book"><div class="wrap">
+    <div><h2>Your chair is waiting</h2><p class="note">On a live site, this button opens the shop's booking page (Square, Booksy or Fresha).</p></div>
+    <a class="btn btn-red" href="#book">Book online</a>
+  </div></section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Fifth Chair Barbershop (sample business)</span><span>214 Main Street, Cedar Valley</span></div></footer>
+
+<script>
+(function(){
+  const days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const hrs={0:[10,15],1:null,2:[9,19],3:[9,19],4:[9,20],5:[9,20],6:[8,17]};
+  const fmt=h=>{const ap=h>=12?"pm":"am";const x=h%12||12;return x+ap};
+  const now=new Date(), d=now.getDay(), h=now.getHours()+now.getMinutes()/60;
+  const body=document.getElementById("hours");
+  [1,2,3,4,5,6,0].forEach(i=>{
+    const tr=document.createElement("tr"); if(i===d) tr.className="today";
+    tr.innerHTML="<td>"+days[i]+"</td><td>"+(hrs[i]?fmt(hrs[i][0])+" – "+fmt(hrs[i][1]):"Closed")+"</td>";
+    body.appendChild(tr);
+  });
+  const t=hrs[d], open=t&&h>=t[0]&&h<t[1];
+  const txt=document.getElementById("openText"), dot=document.getElementById("dot"), next=document.getElementById("next");
+  if(open){txt.textContent="Open now · until "+fmt(t[1]);}
+  else{
+    dot.classList.add("closed");
+    let n=d,k=0; if(t&&h<t[0]){k=0}else{do{n=(n+1)%7;k++}while(!hrs[n])}
+    const label=k===0?"today":k===1?"tomorrow":days[n];
+    txt.textContent="Closed · opens "+label+" at "+fmt(hrs[n][0]);
+    next.textContent=(k===0?"Today":k===1?"Tomorrow":days[n])+", "+fmt(hrs[n][0]);
+  }
+})();
+</script>
+
+</body></html>
