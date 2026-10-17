@@ -15,6 +15,18 @@ esc = lambda s: html.escape(s, quote=True)
 
 tools = json.load(open(os.path.join(SRC, "tools.json")))
 tpl = open(os.path.join(SRC, "template.html")).read()
+
+# Booked & Busy newsletter signup. Paste beehiiv's embed code into
+# _tools_src/newsletter_embed.html and rebuild: every tool with "newsletter": true
+# in tools.json shows the signup box. Until that file exists, no box is shown.
+embed_p = os.path.join(SRC, "newsletter_embed.html")
+embed = open(embed_p).read().strip() if os.path.exists(embed_p) else ""
+NEWSLETTER_BAND = (
+    '\n      <div class="band" id="newsletter-box">'
+    '<h3>Get one pricing tip a week</h3>'
+    '<p><strong>Booked &amp; Busy</strong> is a free weekly email for cleaning business owners: '
+    'one tip, one copy-paste script, one tool. Under 3 minutes to read.</p>'
+    f'<div id="newsletter-slot">{embed}</div></div>') if embed else ""
 style = re.search(r"<style>\n/\* Layout.*?</style>", tpl, re.S).group(0)
 
 
@@ -48,7 +60,8 @@ for t in tools:
     page = tpl
     for k, v in {"TITLE": esc(t["title"]), "DESC": esc(t["desc"]), "URL": url,
                  "JSONLD": jsonld(t, url), "NAV": nav(t["key"]), "H1": esc(t["h1"]),
-                 "LEDE": esc(t["lede"]), "NOTES": notes(t), "KEY": t["key"]}.items():
+                 "LEDE": esc(t["lede"]), "NOTES": notes(t), "KEY": t["key"],
+                 "NEWSLETTER": NEWSLETTER_BAND if t.get("newsletter") else ""}.items():
         page = page.replace("{{" + k + "}}", v)
     assert "{{" not in page, t["key"]
     out = os.path.join(ROOT, "tools", t["slug"])
@@ -59,7 +72,7 @@ for t in tools:
 cards = "".join(
     f'<a class="hub-card" href="/tools/{t["slug"]}/"><b>{esc(t["h1"])}</b><span>{esc(t["desc"].split(". ", 1)[-1])}</span></a>'
     for t in tools)
-hub_desc = "Free pricing calculators for pressure washing, window cleaning, lawn care and other service businesses. Set your rates, compare to typical US prices, and send a quote."
+hub_desc = "Free pricing calculators for pressure washing, window cleaning, lawn care, house cleaning and other service businesses. Set your rates, compare to typical US prices, and send a quote."
 hub = f'''<!doctype html>
 <html lang="en">
 <head>

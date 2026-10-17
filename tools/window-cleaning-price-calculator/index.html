@@ -125,7 +125,7 @@ footer{margin-top:40px;color:var(--muted);font-size:12.5px;border-top:1px solid 
       <a class="kit" href="/tools/">Field <span>Quote</span> Kit</a>
       <p>Free pricing tools for service businesses, by <a href="/" style="color:inherit">Paruchuri Labs</a>.</p>
     </div>
-    <nav aria-label="Calculators" class="tools-nav"><a href="/tools/pressure-washing-estimate-calculator/">Pressure washing</a><a href="/tools/window-cleaning-price-calculator/" aria-current="page">Window cleaning</a><a href="/tools/lawn-mowing-price-calculator/">Lawn mowing</a></nav>
+    <nav aria-label="Calculators" class="tools-nav"><a href="/tools/pressure-washing-estimate-calculator/">Pressure washing</a><a href="/tools/window-cleaning-price-calculator/" aria-current="page">Window cleaning</a><a href="/tools/lawn-mowing-price-calculator/">Lawn mowing</a><a href="/tools/house-cleaning-price-calculator/">House cleaning</a></nav>
   </header>
 
   <section class="tool-head">
@@ -235,8 +235,30 @@ const TOOLS = {
       ['How do I convert acres to square feet?','One acre is 43,560 square feet. A quarter acre is about 10,890 square feet, but the mowable lawn is often much smaller once you subtract the house, drive and beds.'],
     ],
     how:['Lawn area is priced per 1,000 square feet at your rate.','Terrain raises the price for slopes and obstacles.','Frequency adjusts the per-visit price, since one-time and every-other-week cuts take longer.','Add-ons are added per visit, then the minimum applies.'],
+  },
+  clean: {
+    tab: 'House cleaning',
+    title: 'House Cleaning Price Calculator',
+    slip: 'House cleaning estimate',
+    biz: 'Spotless Home Cleaning',
+    min: 120,
+    rate:{rate:45, low:30, high:80},   // per cleaner-hour
+    service:[['Standard clean',1],['Deep clean',1.75],['Move-in / move-out clean',2]],
+    home:{sqft:1800, beds:3, baths:2},
+    condition:[['Average, lived-in',1],['Tidy, cleaned recently',0.9],['Needs work (a few months)',1.25],['Neglected, heavy buildup',1.5]],
+    pets:[['No pets',1],['One pet',1.1],['Two or more pets',1.2]],
+    team:2,
+    supplies:15,
+    addons:[{id:'oven', name:'Inside oven', hrs:0.75},{id:'fridge', name:'Inside fridge', hrs:0.5},{id:'cabinets', name:'Inside cabinets', hrs:1},{id:'windows', name:'Interior windows', hrs:0.75},{id:'laundry', name:'Laundry (one load)', hrs:0.5}],
   }
 };
+
+// House cleaning: estimated labor hours before add-ons (all cleaners combined)
+function cleanHours(t){
+  const base = 0.5 + num('sqft')/1000 + num('baths')*0.4 + num('beds')*0.15;
+  return base * t.service[+$('svc').value][1] * t.condition[+$('cond').value][1] * t.pets[+$('pets').value][1];
+}
+const hrsTxt = h => { const q = Math.round(h*4)/4; return (q % 1 ? q.toFixed(2).replace(/0$/,'') : q.toFixed(0)) + (q === 1 ? ' hr' : ' hrs'); };
 
 const state = {tool:'pressure'};
 const $ = id => document.getElementById(id);
@@ -270,7 +292,7 @@ function renderForm(){
       <div class="field"><label for="hw">Panes with hard water stains</label>${qtyInput('hw', t.hardwater.count, 'panes','Hard water panes')}</div>
       <div class="field"><label for="hwRate">Hard water surcharge</label>${rateInput('hwRate', t.hardwater.rate.toFixed(2), '/pane')}</div>
       ${minField(t)}</div></fieldset>`;
-  } else {
+  } else if(k==='lawn'){
     h += `<fieldset><legend>Lawn</legend><div class="two">
       <div class="field"><label for="sqft">Mowable lawn area</label>${qtyInput('sqft', t.sqft, 'sq ft','Lawn area')}</div>
       <div class="field"><label for="lawnRate">Your rate per 1,000 sq ft</label>${rateInput('lawnRate', t.rate.rate.toFixed(2), '/1k')}</div>
@@ -278,6 +300,20 @@ function renderForm(){
       <fieldset><legend>Each visit includes</legend>`;
     t.addons.forEach(a => h += `<label class="check"><input type="checkbox" id="a-${a.id}" ${a.on?'checked':''}> ${a.name} <span style="color:var(--muted)">${a.price?'+'+money(a.price):'included'}</span></label>`);
     h += `<div class="two">${minField(t)}</div></fieldset>`;
+  } else {
+    h += `<fieldset><legend>The home</legend><div class="two">
+      ${select_('svc', t.service, 'Type of clean')}
+      <div class="field"><label for="sqft">Home size</label>${qtyInput('sqft', t.home.sqft, 'sq ft','Home size in square feet')}</div>
+      <div class="field"><label for="beds">Bedrooms</label>${qtyInput('beds', t.home.beds, 'beds','Bedrooms')}</div>
+      <div class="field"><label for="baths">Bathrooms</label><div class="unit"><input type="number" id="baths" value="${t.home.baths}" step="0.5" min="0" inputmode="decimal" aria-label="Bathrooms"><span>baths</span></div></div>
+      ${select_('cond', t.condition, 'Condition')}${select_('pets', t.pets, 'Pets')}</div></fieldset>
+      <fieldset><legend>Add-ons</legend>`;
+    t.addons.forEach(a => h += `<label class="check"><input type="checkbox" id="a-${a.id}"> ${a.name} <span style="color:var(--muted)">+${a.hrs*60} min</span></label>`);
+    h += `</fieldset><fieldset><legend>Your numbers</legend><div class="two">
+      <div class="field"><label for="hourRate">Hourly rate per cleaner</label>${rateInput('hourRate', t.rate.rate.toFixed(2), '/hr')}</div>
+      <div class="field"><label for="team">Cleaners on the job</label>${qtyInput('team', t.team, 'people','Cleaners on the job')}</div>
+      <div class="field"><label for="supplies">Supplies and travel</label><div class="unit"><input type="number" id="supplies" value="${t.supplies}" step="1" min="0"><span>USD</span></div></div>
+      ${minField(t)}</div></fieldset>`;
   }
   $('form').innerHTML = h;
   $('form').oninput = $('form').onchange = calc;
@@ -305,6 +341,15 @@ function calcFor(k, rateMode){
     });
     const sc = num('screens'); if(sc){ const a = sc*num('screenRate'); sub+=a; lines.push(['Screen cleaning', `${sc} × ${money2(num('screenRate'))}`, a]); }
     const hw = num('hw'); if(hw){ const a = hw*num('hwRate'); sub+=a; lines.push(['Hard water treatment', `${hw} panes × ${money2(num('hwRate'))}`, a]); }
+  } else if(k==='clean'){
+    const r = rateMode==='you' ? num('hourRate') : t.rate[rateMode];
+    const svc = t.service[+$('svc').value][0];
+    const core = Math.max(cleanHours(t), 1.5);
+    const a1 = core*r; sub += a1;
+    const home = `${num('beds') ? num('beds')+' bed, ' : ''}${num('baths')} bath, ${num('sqft').toLocaleString()} sq ft`;
+    lines.push([svc, `${home}: ${hrsTxt(core)} labor × ${money2(r)}/hr`, a1]);
+    t.addons.forEach(a => { if($('a-'+a.id).checked){ const amt = a.hrs*r; sub += amt; lines.push([a.name, `${hrsTxt(a.hrs)} × ${money2(r)}/hr`, amt]); }});
+    const sp = num('supplies'); if(sp){ sub += sp; lines.push(['Supplies and travel','',sp]); }
   } else {
     const r = rateMode==='you' ? num('lawnRate') : t.rate[rateMode];
     const ter = t.terrain[+$('terrain').value], fq = t.freq[+$('freq').value];
@@ -332,6 +377,11 @@ function calc(){
       ? `${money(you.total)} per visit, about ${money(you.total*fq[2])} per month on a ${fq[0].toLowerCase()} plan. Valid for 30 days.`
       : 'One-time visit. Estimate valid for 30 days.';
     $('rangeNote').textContent = 'Per-visit price at typical low, mid and high US rates.';
+  } else if(k==='clean'){
+    const team = Math.max(num('team'), 1);
+    const labor = Math.max(cleanHours(t), 1.5) + t.addons.reduce((s,a) => s + ($('a-'+a.id).checked ? a.hrs : 0), 0);
+    $('fineprint').textContent = `About ${hrsTxt(labor/team)} on site with ${team} cleaner${team>1?'s':''}. Estimate valid for 30 days. Final price confirmed after a walkthrough.`;
+    $('rangeNote').textContent = 'Same home priced at typical low and high hourly rates per cleaner.';
   } else {
     $('fineprint').textContent = 'Estimate valid for 30 days. Final price confirmed on site.';
     $('rangeNote').textContent = 'Same job priced at typical low and high US rates.';
@@ -346,6 +396,7 @@ function select(k){
   state.tool = k;
   const t = TOOLS[k];
   $('slipTitle').textContent = t.slip;
+  if(t.biz) $('bizName').value = t.biz;
   renderForm(); calc();
 }
 
