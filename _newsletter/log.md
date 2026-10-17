@@ -13,6 +13,9 @@ Format, every issue: (1) The tip: one practical lesson, ~150 words. (2) Copy-pas
 ## Planned topics (use in order, then pick new ones)
 3. Invoicing and quoting tools for a 1-3 person service business: free vs. paid (first real affiliate issue; watch clicks, it tests interest in a simple invoicing app).
 4. How to turn one-time jobs into recurring clients (recurring cleans, weekly mowing, seasonal window or pressure washing plans; script for offering a recurring discount after a first job).
+5. Raising prices on existing clients without losing them (when and how much, a 30-day notice text; a price increase calculator could support it).
+6. Getting more Google reviews (when to ask, a review-request text that works for any trade).
+7. Surviving the winter slow season (pre-booking spring work, off-season services, a "book now for spring" message).
 
 ## Notes
 - Growth is meant to be hands-off: the signup box is on every calculator page, and search traffic to the calculators is the main channel. Krish does not post in groups by hand.
