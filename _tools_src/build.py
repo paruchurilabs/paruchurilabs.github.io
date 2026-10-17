@@ -16,15 +16,15 @@ esc = lambda s: html.escape(s, quote=True)
 tools = json.load(open(os.path.join(SRC, "tools.json")))
 tpl = open(os.path.join(SRC, "template.html")).read()
 
-# Booked & Busy newsletter signup. Paste beehiiv's embed code into
-# _tools_src/newsletter_embed.html and rebuild: every tool with "newsletter": true
-# in tools.json shows the signup box. Until that file exists, no box is shown.
+# Booked & Busy newsletter signup. beehiiv's embed code lives in
+# _tools_src/newsletter_embed.html; every tool page (including new ones) shows
+# the signup box automatically. If that file is missing, no box is shown.
 embed_p = os.path.join(SRC, "newsletter_embed.html")
 embed = open(embed_p).read().strip() if os.path.exists(embed_p) else ""
 NEWSLETTER_BAND = (
     '\n      <div class="band" id="newsletter-box">'
     '<h3>Get one pricing tip a week</h3>'
-    '<p><strong>Booked &amp; Busy</strong> is a free weekly email for cleaning business owners: '
+    '<p><strong>Booked &amp; Busy</strong> is a free weekly email for home service business owners: '
     'one tip, one copy-paste script, one tool. Under 3 minutes to read.</p>'
     f'<div id="newsletter-slot">{embed}</div></div>') if embed else ""
 style = re.search(r"<style>\n/\* Layout.*?</style>", tpl, re.S).group(0)
@@ -61,7 +61,7 @@ for t in tools:
     for k, v in {"TITLE": esc(t["title"]), "DESC": esc(t["desc"]), "URL": url,
                  "JSONLD": jsonld(t, url), "NAV": nav(t["key"]), "H1": esc(t["h1"]),
                  "LEDE": esc(t["lede"]), "NOTES": notes(t), "KEY": t["key"],
-                 "NEWSLETTER": NEWSLETTER_BAND if t.get("newsletter") else ""}.items():
+                 "NEWSLETTER": NEWSLETTER_BAND}.items():
         page = page.replace("{{" + k + "}}", v)
     assert "{{" not in page, t["key"]
     out = os.path.join(ROOT, "tools", t["slug"])
