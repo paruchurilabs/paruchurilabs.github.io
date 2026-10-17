@@ -8,9 +8,9 @@ Format, every issue: (1) The tip: one practical lesson, ~150 words. (2) Copy-pas
 | # | Send date | Subject | Draft | Tool | Status |
 |---|---|---|---|---|---|
 | 1 | 2026-10-27 | Are you underpricing your deep cleans? | https://claude.ai/code/artifact/260b3b14-0590-420b-822b-c81c70404306 (welcome email + Issue #1) | /tools/house-cleaning-price-calculator/ (PR #1) | drafted |
+| 2 | 2026-11-03 | The follow-up text that wins back ghosted quotes | https://claude.ai/code/artifact/1c3b5bfa-7001-4d33-b08a-780bdd4cb7c1 | none new; tool of the week Jobber quote follow-ups (plain link), sign-off links /tools/ | ready to send |
 
 ## Planned topics (use in order, then pick new ones)
-2. The follow-up text that wins back ghosted quotes (works for any trade; copy-paste: a friendly 2-day follow-up text).
 3. Invoicing and quoting tools for a 1-3 person service business: free vs. paid (first real affiliate issue; watch clicks, it tests interest in a simple invoicing app).
 4. How to turn one-time jobs into recurring clients (recurring cleans, weekly mowing, seasonal window or pressure washing plans; script for offering a recurring discount after a first job).
 
