@@ -43,5 +43,38 @@
       ["Should one-time cuts cost more than weekly service?", "Yes. A one-time cut is usually overgrown, harder to schedule and does not repeat, so it is commonly priced 30 to 60 percent above a weekly visit."],
       ["How do I convert acres to square feet?", "One acre is 43,560 square feet. A quarter acre is about 10,890 square feet, but the mowable lawn is often much smaller once you subtract the house, drive and beds."]
     ]
+  },
+  {
+    "key": "clean",
+    "slug": "house-cleaning-price-calculator",
+    "nav": "House cleaning",
+    "title": "House Cleaning Price Calculator (Free) | Field Quote Kit",
+    "desc": "Free house cleaning price calculator. Quote standard, deep and move-out cleans from home size, condition and your hourly rate, then copy a quote to send.",
+    "h1": "House Cleaning Price Calculator",
+    "lede": "Quote standard, deep and move-out cleans by the time they really take. Enter the home, pick the condition, set your hourly rate per cleaner, and the estimate updates as you type.",
+    "how": [
+      "Labor hours start from square footage, plus time for each bathroom and bedroom.",
+      "A deep clean is figured at about 1.75 times a standard clean and a move-out at about 2 times.",
+      "Condition and pets add time for buildup and pet hair; add-ons add fixed time.",
+      "Hours are priced at your hourly rate per cleaner, plus supplies and travel, then the minimum applies."
+    ],
+    "faq": [
+      [
+        "How much should I charge per hour for house cleaning?",
+        "Published guides put typical US rates at about $30 to $80 per hour per cleaner. Your rate needs to cover your pay plus self-employment taxes, insurance, supplies and unpaid time like driving and quoting, so many owners set a target of $40 to $60."
+      ],
+      [
+        "How much more should a deep clean cost?",
+        "A deep clean usually takes 1.5 to 2 times as long as a standard clean of the same home, so it should cost about that much more. Whole-home deep cleans commonly run $180 to $375 in published pricing guides."
+      ],
+      [
+        "How much do move-out cleans cost?",
+        "Move-in and move-out cleans are often priced around $220 to $400 for a typical home, because they cover inside cabinets, appliances and areas regular cleans skip."
+      ],
+      [
+        "Should I quote a flat price or charge by the hour?",
+        "Most clients prefer a flat quote so they know what they will pay. Use the hours behind the scenes to set that flat price, so the quote stays simple and you still earn your hourly rate."
+      ]
+    ]
   }
 ]
