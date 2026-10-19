@@ -154,7 +154,7 @@ window.LPD = (() => {
     const each = (fn) => {
       for (const tl of data.tiles) {
         const x0 = M + (tl.x / t - v.X0) * v.s, y0 = M + (tl.y / t - v.Y0) * v.s, sz = v.s / t;
-        g.save(); g.beginPath(); g.rect(x0, y0, sz, sz); g.clip();
+        g.save(); g.beginPath(); g.rect(x0 - 1, y0 - 1, sz + 2, sz + 2); g.clip();
         fn(tl, (layer) => { const e = layer.extent; return ([px, py]) => [x0 + px / e * sz, y0 + py / e * sz]; });
         g.restore();
       }
