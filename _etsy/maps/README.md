@@ -27,3 +27,14 @@ This listing is NOT synced to Printify, so its orders are not auto-fulfilled. Fo
 5. Printify > Create order > manual order with that product, the purchased size, and the buyer's shipping address from the Etsy order. This charges Krish's Printify payment method, so it needs Krish's explicit OK for that specific order before submitting.
 6. When Printify ships, add tracking to the Etsy order (Printify does not do this for manual orders): Etsy order > Complete order > carrier + tracking number.
 Processing profile on the listing is 5–10 business days.
+
+## Displate versions (lpd.js)
+4200x5880 JPG (1.4:1), full-bleed map, no frame line, text inside a 260px safe margin.
+Render in a tab on https://tiles.openfreemap.org/planet: fetch raw.githubusercontent.com/.../_etsy/maps/lpd.js and eval,
+then LPD.make(job) for each job below. Open the uploader with a button click (window.open keeps opener),
+postMessage blobs, and set the uploader's file input via DataTransfer.
+Jobs: Lake Tahoe (California · Nevada), Lake Norman, North Carolina / Lake of the Ozarks, Missouri / Lake Lanier, Georgia /
+Lake Winnipesaukee, New Hampshire / Smith Mountain Lake, Virginia / Lake Travis, Texas / Table Rock Lake, Missouri /
+Geneva Lake, Wisconsin (title Lake Geneva, zmax 14, fit 0.96) / Lake Minnetonka, Minnesota (zmax 14) / Torch Lake, Michigan /
+Lake Keowee, South Carolina. Defaults fit 0.82, zmax 13. All 12 rendered fine on 2026-10-18.
+Blocker: Displate asks the artist to confirm the first upload by phone (SMS/WhatsApp) - Krish has to do that once.
