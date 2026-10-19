@@ -76,5 +76,38 @@
         "Most clients prefer a flat quote so they know what they will pay. Use the hours behind the scenes to set that flat price, so the quote stays simple and you still earn your hourly rate."
       ]
     ]
+  },
+  {
+    "key": "gutter",
+    "slug": "gutter-cleaning-price-calculator",
+    "nav": "Gutter cleaning",
+    "title": "Gutter Cleaning Price Calculator (Free) | Field Quote Kit",
+    "desc": "Free gutter cleaning price calculator. Price by linear foot and story, add downspouts and roof debris, compare to typical US rates, and copy a quote.",
+    "h1": "Gutter Cleaning Price Calculator",
+    "lede": "Price a gutter cleaning job by linear foot and story height. Enter the gutter length on each level, adjust your rates, and add downspouts or extras.",
+    "how": [
+      "Each gutter run is priced as linear feet times your rate for that height.",
+      "Condition and a steep roof raise the gutter price for the extra time and risk.",
+      "Downspout flushing is priced per downspout, and add-ons are flat amounts.",
+      "If the total falls under your minimum, the minimum applies."
+    ],
+    "faq": [
+      [
+        "How much should I charge per linear foot to clean gutters?",
+        "Many pros charge about $0.95 to $1.25 per linear foot on a single-story home, $1.00 to $1.85 on two stories and $1.25 to $2.25 on three stories. Most homes have 125 to 200 feet of gutter, so a typical single-story cleaning lands around $120 to $250."
+      ],
+      [
+        "How much do you charge to clean gutters on a two-story house?",
+        "Two-story homes commonly run about $150 to $360 per cleaning, depending on gutter length, roof pitch and how much debris is packed in. Upper runs take extension ladders and more setup, so they are priced higher per foot."
+      ],
+      [
+        "Should I charge extra for downspouts?",
+        "Many companies include a quick check but charge to flush clogged downspouts, often $25 to $75 each. Pricing it as a line item keeps your base price competitive and pays you for the extra work."
+      ],
+      [
+        "How do I measure gutter length for a quote?",
+        "Add up the length of every roof edge that has a gutter. You can pace it off from the ground, use the house measurements from a satellite map, or count downspouts as a rough check: most runs have one downspout every 30 to 40 feet."
+      ]
+    ]
   }
 ]

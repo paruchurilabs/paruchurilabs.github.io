@@ -250,6 +250,21 @@ const TOOLS = {
     team:2,
     supplies:15,
     addons:[{id:'oven', name:'Inside oven', hrs:0.75},{id:'fridge', name:'Inside fridge', hrs:0.5},{id:'cabinets', name:'Inside cabinets', hrs:1},{id:'windows', name:'Interior windows', hrs:0.75},{id:'laundry', name:'Laundry (one load)', hrs:0.5}],
+  },
+  gutter: {
+    tab: 'Gutter cleaning',
+    title: 'Gutter Cleaning Price Calculator',
+    slip: 'Gutter cleaning estimate',
+    min: 125,
+    runs: [
+      {id:'g1', name:'Single-story gutters', hint:'Reachable from a short ladder', ft:150, rate:1.10, low:0.95, high:1.25},
+      {id:'g2', name:'Second-story gutters', hint:'Extension ladder work', ft:0, rate:1.40, low:1.00, high:1.85},
+      {id:'g3', name:'Third story and up', hint:'Tall ladder or roof access', ft:0, rate:1.75, low:1.25, high:2.25},
+    ],
+    condition: [['Routine (cleaned in the last year)',1],['Clogged (some standing water, plants)',1.2],['Neglected (packed debris, overflowing)',1.5]],
+    roof: [['Low or walkable pitch',1],['Steep roof',1.15]],
+    downspouts: {count:0, rate:40},
+    addons: [{id:'blow', name:'Roof debris blow-off', price:100},{id:'guards', name:'Gutter guard check and adjustment', price:40},{id:'seal', name:'Minor leak resealing', price:75}],
   }
 };
 
@@ -300,6 +315,16 @@ function renderForm(){
       <fieldset><legend>Each visit includes</legend>`;
     t.addons.forEach(a => h += `<label class="check"><input type="checkbox" id="a-${a.id}" ${a.on?'checked':''}> ${a.name} <span style="color:var(--muted)">${a.price?'+'+money(a.price):'included'}</span></label>`);
     h += `<div class="two">${minField(t)}</div></fieldset>`;
+  } else if(k==='gutter'){
+    h += `<fieldset><legend>Gutter runs</legend><div class="row head"><span>Height</span><span>Length</span><span>Your rate</span></div>`;
+    t.runs.forEach(s => h += `<div class="row"><label for="q-${s.id}">${s.name}<small>${s.hint}</small></label>${qtyInput('q-'+s.id, s.ft, 'ft', s.name+' linear feet')}${rateInput('r-'+s.id, s.rate.toFixed(2), '/ft')}</div>`);
+    h += `</fieldset><fieldset><legend>Job details</legend><div class="two">
+      ${select_('cond', t.condition, 'Gutter condition')}${select_('roof', t.roof, 'Roof pitch')}
+      <div class="field"><label for="ds">Downspouts to flush</label>${qtyInput('ds', t.downspouts.count, 'qty','Downspouts to flush')}</div>
+      <div class="field"><label for="dsRate">Price per downspout</label>${rateInput('dsRate', t.downspouts.rate.toFixed(2), 'each')}</div>
+      ${minField(t)}</div>`;
+    t.addons.forEach(a => h += `<label class="check"><input type="checkbox" id="a-${a.id}"> ${a.name} <span style="color:var(--muted)">+${money(a.price)}</span></label>`);
+    h += `</fieldset>`;
   } else {
     h += `<fieldset><legend>The home</legend><div class="two">
       ${select_('svc', t.service, 'Type of clean')}
@@ -350,6 +375,17 @@ function calcFor(k, rateMode){
     lines.push([svc, `${home}: ${hrsTxt(core)} labor × ${money2(r)}/hr`, a1]);
     t.addons.forEach(a => { if($('a-'+a.id).checked){ const amt = a.hrs*r; sub += amt; lines.push([a.name, `${hrsTxt(a.hrs)} × ${money2(r)}/hr`, amt]); }});
     const sp = num('supplies'); if(sp){ sub += sp; lines.push(['Supplies and travel','',sp]); }
+  } else if(k==='gutter'){
+    const c = t.condition[+$('cond').value][1], p = t.roof[+$('roof').value][1];
+    const m = c*p;
+    t.runs.forEach(s => {
+      const q = num('q-'+s.id); if(!q) return;
+      const r = rateMode==='you' ? num('r-'+s.id) : s[rateMode];
+      const amt = q*r*m; sub += amt;
+      lines.push([s.name, `${q.toLocaleString()} ft × ${money2(r)}${c>1?' × '+c+' condition':''}${p>1?' × '+p+' steep roof':''}`, amt]);
+    });
+    const ds = num('ds'); if(ds){ const a = ds*num('dsRate'); sub += a; lines.push(['Downspout flushing', `${ds} × ${money2(num('dsRate'))}`, a]); }
+    t.addons.forEach(a => { if($('a-'+a.id).checked){ sub += a.price; lines.push([a.name,'',a.price]); }});
   } else {
     const r = rateMode==='you' ? num('lawnRate') : t.rate[rateMode];
     const ter = t.terrain[+$('terrain').value], fq = t.freq[+$('freq').value];
