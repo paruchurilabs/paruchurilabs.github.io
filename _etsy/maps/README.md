@@ -38,3 +38,13 @@ Lake Winnipesaukee, New Hampshire / Smith Mountain Lake, Virginia / Lake Travis,
 Geneva Lake, Wisconsin (title Lake Geneva, zmax 14, fit 0.96) / Lake Minnetonka, Minnesota (zmax 14) / Torch Lake, Michigan /
 Lake Keowee, South Carolina. Defaults fit 0.82, zmax 13. All 12 rendered fine on 2026-10-18.
 Blocker: Displate asks the artist to confirm the first upload by phone (SMS/WhatsApp) - Krish has to do that once.
+
+### Displate upload status / flow (2026-10-19)
+Phone confirmation done. New artists: max 4 artworks in the validation queue.
+Submitted 2026-10-19: Lake Tahoe, Lake Norman, Lake of the Ozarks, Lake Lanier (collection "Lake Maps", category Maps, art type Digital Art).
+Remaining: Winnipesaukee, Smith Mountain, Travis, Table Rock, Geneva, Minnetonka, Torch, Keowee.
+Flow per artwork (uploader at /artist/artwork-uploader): set file input via DataTransfer -> wait for "All systems are a go" -> Next (JS click ok)
+-> wait up to ~60s for input[name=title] -> set title "<Lake> Map", description, art_type value 10 -> Next (needs a REAL click)
+-> click "Add tag", focus input, type lake house / cabin decor / lake map + Enter each (Displate pre-fills ~10 tags) -> Next (real click)
+-> focus react-select inputs [0] type "Maps"+Enter, [1] type "Lake"+Enter -> tick input[name=accept] -> Next (real click).
+Keep each javascript_exec under 45s (CDP timeout).
