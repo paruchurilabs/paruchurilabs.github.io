@@ -1,0 +1,50 @@
+{
+ "Lake Keowee": {
+  "etsy": "4598306647",
+  "s3": "a96d29bc-0112-4b1b-b028-d497dc1904d7"
+ },
+ "Torch Lake": {
+  "etsy": "4598327718",
+  "s3": "a8aa88d7-35cf-4d86-9ae3-5c9f7cf9b4cc"
+ },
+ "Lake Minnetonka": {
+  "etsy": "4598326900",
+  "s3": "ddbba136-c95c-4a01-b7a1-1d9c882f9ef3"
+ },
+ "Lake Geneva": {
+  "etsy": "4598326366",
+  "s3": "3786a4ae-e8be-4a01-865b-a6f06b7eb4b8"
+ },
+ "Table Rock Lake": {
+  "etsy": "4598325094",
+  "s3": "bfcd2e65-31be-4eea-8170-025d02e37f8a"
+ },
+ "Lake Travis": {
+  "etsy": "4598302279",
+  "s3": "97d71ae7-8692-4a71-be81-f352f2acf303"
+ },
+ "Lake Lanier": {
+  "etsy": "4597881338",
+  "s3": "bc5f653e-c54a-4481-8a7f-9ad0a5e51099"
+ },
+ "Lake of the Ozarks": {
+  "etsy": "4597880792",
+  "s3": "14e49f62-4b18-459f-9858-ca5cf5058863"
+ },
+ "Lake Winnipesaukee": {
+  "etsy": "4597858537",
+  "s3": "ca3d4533-16ef-4c73-99e5-be179fdb8d30"
+ },
+ "Smith Mountain Lake": {
+  "etsy": "4597857987",
+  "s3": "b89488ca-1679-4e1c-bd34-635b44e43b73"
+ },
+ "Lake Norman": {
+  "etsy": "4597877818",
+  "s3": "566624ec-fc9d-4a1f-8416-2add1a381a70"
+ },
+ "Lake Tahoe": {
+  "etsy": "4597872402",
+  "s3": "7aef3b15-3f51-4771-81cf-4121db21ecfc"
+ }
+}
