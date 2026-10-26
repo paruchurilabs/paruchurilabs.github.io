@@ -265,6 +265,21 @@ const TOOLS = {
     roof: [['Low or walkable pitch',1],['Steep roof',1.15]],
     downspouts: {count:0, rate:40},
     addons: [{id:'blow', name:'Roof debris blow-off', price:100},{id:'guards', name:'Gutter guard check and adjustment', price:40},{id:'seal', name:'Minor leak resealing', price:75}],
+  },
+  junk: {
+    tab: 'Junk removal',
+    title: 'Junk Removal Price Calculator',
+    slip: 'Junk removal estimate',
+    min: 125,
+    loads: [
+      {id:'l1', name:'1/8 truck (minimum load)', hint:'A few bulky items', qty:0, rate:150, low:100, high:250},
+      {id:'l2', name:'1/4 truck', hint:'Small room or garage corner', qty:0, rate:300, low:250, high:400},
+      {id:'l3', name:'1/2 truck', hint:'One room or a small cleanout', qty:1, rate:425, low:300, high:600},
+      {id:'l4', name:'3/4 truck', hint:'Several rooms', qty:0, rate:550, low:450, high:850},
+      {id:'l5', name:'Full truck', hint:'Whole garage, basement or estate', qty:0, rate:700, low:600, high:1100},
+    ],
+    mattress: {count:0, rate:30},
+    addons: [{id:'heavy', name:'Heavy debris (concrete, dirt, shingles)', price:150},{id:'stairs', name:'Stairs or long carry', price:75},{id:'sameday', name:'Same-day pickup', price:75},{id:'hottub', name:'Hot tub removal', price:500}],
   }
 };
 
@@ -322,6 +337,16 @@ function renderForm(){
       ${select_('cond', t.condition, 'Gutter condition')}${select_('roof', t.roof, 'Roof pitch')}
       <div class="field"><label for="ds">Downspouts to flush</label>${qtyInput('ds', t.downspouts.count, 'qty','Downspouts to flush')}</div>
       <div class="field"><label for="dsRate">Price per downspout</label>${rateInput('dsRate', t.downspouts.rate.toFixed(2), 'each')}</div>
+      ${minField(t)}</div>`;
+    t.addons.forEach(a => h += `<label class="check"><input type="checkbox" id="a-${a.id}"> ${a.name} <span style="color:var(--muted)">+${money(a.price)}</span></label>`);
+    h += `</fieldset>`;
+  } else if(k==='junk'){
+    h += `<fieldset><legend>Load size</legend><div class="row head"><span>How full the truck gets</span><span>Loads</span><span>Your price</span></div>`;
+    t.loads.forEach(s => h += `<div class="row"><label for="q-${s.id}">${s.name}<small>${s.hint}</small></label>${qtyInput('q-'+s.id, s.qty, 'loads', s.name+' loads')}${rateInput('r-'+s.id, s.rate, '/load')}</div>`);
+    h += `</fieldset><fieldset><legend>Disposal fees and extras</legend><div class="two">
+      <div class="field"><label for="mat">Mattresses or box springs</label>${qtyInput('mat', t.mattress.count, 'qty','Mattresses or box springs')}</div>
+      <div class="field"><label for="matRate">Disposal fee per mattress</label>${rateInput('matRate', t.mattress.rate.toFixed(2), 'each')}</div>
+      <div class="field"><label for="fees">Other disposal fees (tires, e-waste, paint)</label><div class="unit"><input type="number" id="fees" value="0" step="1" min="0"><span>USD</span></div></div>
       ${minField(t)}</div>`;
     t.addons.forEach(a => h += `<label class="check"><input type="checkbox" id="a-${a.id}"> ${a.name} <span style="color:var(--muted)">+${money(a.price)}</span></label>`);
     h += `</fieldset>`;
@@ -386,6 +411,16 @@ function calcFor(k, rateMode){
     });
     const ds = num('ds'); if(ds){ const a = ds*num('dsRate'); sub += a; lines.push(['Downspout flushing', `${ds} × ${money2(num('dsRate'))}`, a]); }
     t.addons.forEach(a => { if($('a-'+a.id).checked){ sub += a.price; lines.push([a.name,'',a.price]); }});
+  } else if(k==='junk'){
+    t.loads.forEach(s => {
+      const q = num('q-'+s.id); if(!q) return;
+      const r = rateMode==='you' ? num('r-'+s.id) : s[rateMode];
+      const amt = q*r; sub += amt;
+      lines.push([s.name.replace(' (minimum load)',''), `${q} load${q>1?'s':''} × ${money(r)}`, amt]);
+    });
+    const mt = num('mat'); if(mt){ const a = mt*num('matRate'); sub += a; lines.push(['Mattress disposal', `${mt} × ${money2(num('matRate'))}`, a]); }
+    const fe = num('fees'); if(fe){ sub += fe; lines.push(['Other disposal fees','',fe]); }
+    t.addons.forEach(a => { if($('a-'+a.id).checked){ sub += a.price; lines.push([a.name,'',a.price]); }});
   } else {
     const r = rateMode==='you' ? num('lawnRate') : t.rate[rateMode];
     const ter = t.terrain[+$('terrain').value], fq = t.freq[+$('freq').value];
@@ -418,6 +453,9 @@ function calc(){
     const labor = Math.max(cleanHours(t), 1.5) + t.addons.reduce((s,a) => s + ($('a-'+a.id).checked ? a.hrs : 0), 0);
     $('fineprint').textContent = `About ${hrsTxt(labor/team)} on site with ${team} cleaner${team>1?'s':''}. Estimate valid for 30 days. Final price confirmed after a walkthrough.`;
     $('rangeNote').textContent = 'Same home priced at typical low and high hourly rates per cleaner.';
+  } else if(k==='junk'){
+    $('fineprint').textContent = 'Estimate based on how much of the truck the load fills. Final price confirmed on site once the items are loaded. Valid for 30 days.';
+    $('rangeNote').textContent = 'Same load priced at typical low and high US truckload rates.';
   } else {
     $('fineprint').textContent = 'Estimate valid for 30 days. Final price confirmed on site.';
     $('rangeNote').textContent = 'Same job priced at typical low and high US rates.';

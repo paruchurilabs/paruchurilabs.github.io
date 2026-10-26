@@ -109,5 +109,38 @@
         "Add up the length of every roof edge that has a gutter. You can pace it off from the ground, use the house measurements from a satellite map, or count downspouts as a rough check: most runs have one downspout every 30 to 40 feet."
       ]
     ]
+  },
+  {
+    "key": "junk",
+    "slug": "junk-removal-price-calculator",
+    "nav": "Junk removal",
+    "title": "Junk Removal Price Calculator (Free) | Field Quote Kit",
+    "desc": "Free junk removal price calculator. Price by truckload (1/8 to full), add mattress and disposal fees, compare to typical US rates, and copy a quote.",
+    "h1": "Junk Removal Price Calculator",
+    "lede": "Price a junk removal job by how much of your truck it fills. Pick the load size, set your prices, and add disposal fees, heavy debris or stairs.",
+    "how": [
+      "Each load is priced at your rate for that share of the truck, from a 1/8 minimum load up to a full truck.",
+      "Mattress disposal is priced per piece, and other dump or recycling fees are passed through as entered.",
+      "Heavy debris, stairs, same-day service and hot tubs are flat add-ons.",
+      "If the total falls under your minimum, the minimum applies."
+    ],
+    "faq": [
+      [
+        "How much should I charge for junk removal?",
+        "Most junk removal companies price by how much of the truck a job fills. Published guides put a 1/8 or minimum load around $100 to $250, a half truck around $300 to $500 and a full truck around $600 to $800, with national franchises charging up to about $1,100 for a full load."
+      ],
+      [
+        "How do you price junk removal by the truckload?",
+        "Estimate by eye how much of the truck bed the items will take up, then price from a load chart: 1/8, 1/4, 1/2, 3/4 and full. Share the chart up front and confirm the final price once the items are loaded, so the customer only pays for the space they use."
+      ],
+      [
+        "What is a good minimum charge for junk removal?",
+        "Many companies set a minimum pickup between $70 and $150, which covers a single bulky item or a very small load. Single-item pickups such as a chair, mattress or appliance commonly run $70 to $180."
+      ],
+      [
+        "Should I charge extra for mattresses, heavy debris or stairs?",
+        "Yes. Transfer stations often charge $20 to $50 to take a mattress, so many haulers pass that fee through. Heavy debris like concrete or dirt commonly adds $100 to $300 or more, and stairs or long carries often add $50 to $150."
+      ]
+    ]
   }
 ]
