@@ -81,10 +81,10 @@
     "key": "gutter",
     "slug": "gutter-cleaning-price-calculator",
     "nav": "Gutter cleaning",
-    "title": "Gutter Cleaning Price Calculator (Free) | Field Quote Kit",
-    "desc": "Free gutter cleaning price calculator. Price by linear foot and story, add downspouts and roof debris, compare to typical US rates, and copy a quote.",
-    "h1": "Gutter Cleaning Price Calculator",
-    "lede": "Price a gutter cleaning job by linear foot and story height. Enter the gutter length on each level, adjust your rates, and add downspouts or extras.",
+    "title": "Gutter Cleaning Cost Calculator (Free) | Field Quote Kit",
+    "desc": "Free gutter cleaning cost calculator. Price by linear foot and story, add downspouts and roof debris, compare to typical US rates and copy a quote.",
+    "h1": "Gutter Cleaning Cost Calculator",
+    "lede": "Work out what a gutter cleaning job should cost by linear foot and story height. Enter the gutter length on each level, adjust your rates, and add downspouts or extras.",
     "how": [
       "Each gutter run is priced as linear feet times your rate for that height.",
       "Condition and a steep roof raise the gutter price for the extra time and risk.",
@@ -103,6 +103,10 @@
       [
         "Should I charge extra for downspouts?",
         "Many companies include a quick check but charge to flush clogged downspouts, often $25 to $75 each. Pricing it as a line item keeps your base price competitive and pays you for the extra work."
+      ],
+      [
+        "How much does gutter cleaning cost on average?",
+        "Typical US gutter cleanings run about $120 to $235, with a national average near $170 for a single-story home with 125 to 200 feet of gutter. Taller homes, steep roofs, heavy clogs and downspout flushing push the cost up, which is why this calculator prices each of those separately."
       ],
       [
         "How do I measure gutter length for a quote?",
